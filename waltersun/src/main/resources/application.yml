@@ -4,5 +4,6 @@ server:
     session:
       cookie:
         http-only: true
+    context-path: /
 
 downloadPath: E:\tempnew\

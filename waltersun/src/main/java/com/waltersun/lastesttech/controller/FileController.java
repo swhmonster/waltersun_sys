@@ -23,6 +23,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.waltersun.lastesttech.bean.SpbtResponseEntity;
+import com.waltersun.lastesttech.utils.ResponseUtils;
+
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -75,5 +78,23 @@ public class FileController {
             log.error("下载文件失败", e);
         }
         return "success";
+    }
+
+    @SneakyThrows
+    @GetMapping("fileList")
+    @ApiOperation(value = "获取文件列表", response = String.class)
+    @ResponseBody
+    public SpbtResponseEntity getMarkdownFile() {
+        File file = new File(path);
+        List<File> fileList = Arrays.asList(Objects.requireNonNull(file.listFiles()));
+        fileList.sort(Comparator.comparing(File::getName));
+        List<Map<String, String>> linkList = new ArrayList<>();
+        fileList.forEach(e -> {
+            Map<String, String> map = new HashMap<>(16);
+            map.put(FILE_NAME, e.getName());
+            map.put(FILE_ADRESS, path + e.getName());
+            linkList.add(map);
+        });
+        return ResponseUtils.successResponse(linkList);
     }
 }
