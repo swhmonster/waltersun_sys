@@ -1,0 +1,8 @@
+server:
+  port: 2021
+  servlet:
+    session:
+      cookie:
+        http-only: true
+
+downloadPath: E:\tempnew\
