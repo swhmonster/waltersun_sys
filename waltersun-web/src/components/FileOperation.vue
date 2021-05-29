@@ -15,13 +15,13 @@ export default {
     }
   },
   mounted() {
-    this.$axios.get('file/fileList', {params: {id: 'xxx'}}).then(res => {
+    this.$axios.get('/api/file/fileList', {params: {id: 'xxx'}}).then(res => {
       this.linkList = res.data.data
     })
   },
   methods: {
     download(path, fileName) {
-      window.open('file/fileInfos?path=' + encodeURI(path) + '&fileName=' + encodeURI(fileName), '_blank')
+      window.open('/api/file/fileInfos?path=' + encodeURI(path) + '&fileName=' + encodeURI(fileName), '_blank')
     }
   }
 }
