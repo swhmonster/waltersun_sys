@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-for="(link,index) in linkList" :key="index">
-      <a @click="download(link.fileAddress,link.fileName)" v-text="link.fileName" target="_blank"/>
+      <a @click="download(link.fileAddress,link.fileName)" v-text="link.fileName" target="_blank" style="cursor:pointer"/>
     </div>
   </div>
 </template>

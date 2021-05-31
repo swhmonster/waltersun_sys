@@ -7,10 +7,11 @@ module.exports = {
     publicPath: './',
     devServer: {
         proxy: {
-            target: 'http://www.waltersun.cn',
+            target: process.env.NODE_ENV === 'development'
+                ?'http://localhost:2021':'http://www.waltersun.cn',
             changeOrigin: true,
             pathRewrite: {
-                '^/api': '/'
+                '^/api': '/api'
             }
         }
     },
