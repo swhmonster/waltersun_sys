@@ -7,8 +7,6 @@ server:
     context-path: /api
 
 spring:
-  profiles:
-    active: dev
   datasource:
     url: jdbc:mysql://118.195.145.14:3306/mysql?useUnicode=true&characterEncoding=utf8&allowMultiQueries=TRUE
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -19,3 +17,5 @@ logging:
   file:
     name: waltersun.log
     path: /home/waltersun/
+
+downloadPath: E:\tempnew\

@@ -5,6 +5,8 @@ com/waltersun/lastesttech/config/SwaggerConfig.java
 com/waltersun/lastesttech/bean/SpbtResponseEntity.java
  com.waltersun.lastesttech.bean.SpbtResponseEntity
  com.waltersun.lastesttech.bean.SpbtResponseEntity$SpbtResponseEntityBuilder
+com/waltersun/lastesttech/enums/SeperateConstant.java
+ com.waltersun.lastesttech.enums.SeperateConstant
 com/waltersun/lastesttech/utils/ResponseUtils.java
  com.waltersun.lastesttech.utils.ResponseUtils
 com/waltersun/lastesttech/WaltersunApplication.java

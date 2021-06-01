@@ -18,7 +18,7 @@ public class SwaggerConfig {
     @Bean
     public Docket docket(){
         return new Docket(DocumentationType.SWAGGER_2)
-                .groupName("文件上传下载")
+                .groupName("基础功能")
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.waltersun.lastesttech.controller"))
                 .paths(PathSelectors.any())
