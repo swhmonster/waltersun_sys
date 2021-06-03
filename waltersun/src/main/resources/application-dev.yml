@@ -24,6 +24,7 @@ async:
       core_pool_size: 5
       max_pool_size: 5
       queue_capacity: 99999
-      prefix: async-service-
+      name:
+        prefix: async-service-
 
 downloadPath: E:\tempnew\

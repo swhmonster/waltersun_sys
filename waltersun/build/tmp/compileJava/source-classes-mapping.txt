@@ -9,5 +9,13 @@ com/waltersun/lastesttech/enums/SeperateConstant.java
  com.waltersun.lastesttech.enums.SeperateConstant
 com/waltersun/lastesttech/utils/ResponseUtils.java
  com.waltersun.lastesttech.utils.ResponseUtils
+com/waltersun/lastesttech/mapper/CommonMapper.java
+ com.waltersun.lastesttech.mapper.CommonMapper
+com/waltersun/lastesttech/config/ExecutorConfig.java
+ com.waltersun.lastesttech.config.ExecutorConfig
 com/waltersun/lastesttech/controller/FileController.java
  com.waltersun.lastesttech.controller.FileController
+com/waltersun/lastesttech/service/CommonService.java
+ com.waltersun.lastesttech.service.CommonService
+com/waltersun/lastesttech/service/impl/CommonServiceImpl.java
+ com.waltersun.lastesttech.service.impl.CommonServiceImpl
