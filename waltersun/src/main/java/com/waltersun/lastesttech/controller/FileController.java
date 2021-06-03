@@ -15,6 +15,7 @@ import java.util.Objects;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,11 +25,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.waltersun.lastesttech.bean.SpbtResponseEntity;
+import com.waltersun.lastesttech.service.CommonService;
 import com.waltersun.lastesttech.utils.ResponseUtils;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
@@ -41,10 +44,13 @@ import lombok.extern.slf4j.Slf4j;
 @Api(tags = "文件上传下载相关接口")
 @RequestMapping("file")
 @Slf4j
+@RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class FileController {
 
     @Value("${downloadPath:/home/files/}")
     private String path;
+
+    private final CommonService commonService;
 
     private static final String FILE_NAME = "fileName";
     private static final String FILE_ADRESS = "fileAddress";
@@ -96,5 +102,13 @@ public class FileController {
             linkList.add(map);
         });
         return ResponseUtils.successResponse(linkList);
+    }
+
+    @SneakyThrows
+    @GetMapping("queryTest")
+    @ApiOperation(value = "查询测试", response = String.class)
+    @ResponseBody
+    public String queryTest(){
+        return commonService.queryTest();
     }
 }

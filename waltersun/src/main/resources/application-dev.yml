@@ -18,4 +18,12 @@ logging:
     name: waltersun.log
     path: /home/waltersun/
 
+async:
+  executor:
+    thread:
+      core_pool_size: 5
+      max_pool_size: 5
+      queue_capacity: 99999
+      prefix: async-service-
+
 downloadPath: E:\tempnew\
