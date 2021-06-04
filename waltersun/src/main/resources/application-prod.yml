@@ -18,6 +18,10 @@ logging:
   file:
     name: waltersun.log
     path: /home/waltersun/
+  level:
+    root: error
+    com.waltersun.lastesttech: info
+    com.waltersun.lastesttech.service: debug
 
 #线程池配置
 async:
