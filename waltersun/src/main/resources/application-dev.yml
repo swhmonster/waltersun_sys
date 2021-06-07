@@ -18,9 +18,7 @@ logging:
     name: waltersun.log
     path: /home/waltersun/
   level:
-    root: error
-    com.waltersun.lastesttech: info
-    com.waltersun.lastesttech.service: debug
+    root: debug
 
 async:
   executor:
