@@ -24,7 +24,6 @@ import lombok.SneakyThrows;
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class CommonServiceImpl implements CommonService {
     private final CommonMapper commonMapper;
-    private final MyTimeAssigner myTimeAssigner;
 
     @Override
     @SneakyThrows
@@ -40,7 +39,7 @@ public class CommonServiceImpl implements CommonService {
         // 生成水印
         /*WatermarkStrategy<String> strategy = WatermarkStrategy
                 .<String>forBoundedOutOfOrderness(Duration.ofSeconds(20))
-                .withTimestampAssigner(myTimeAssigner);*/
+                .withTimestampAssigner(new MyTimeAssigner());*/
 
         DataStream<SpbtResponseEntity> adults =
                 flintstones.filter((FilterFunction<SpbtResponseEntity>) value -> value.getCode() > 1);
