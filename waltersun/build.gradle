@@ -28,6 +28,10 @@ dependencies {
     implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.0'
     implementation 'mysql:mysql-connector-java'
     implementation 'org.python:jython-slim:2.7.2'
+
+    implementation 'org.apache.flink:flink-java:1.13.1'
+    implementation 'org.apache.flink:flink-streaming-java_2.11:1.13.1'
+    implementation 'org.apache.flink:flink-clients_2.11:1.13.1'
 }
 
 test {

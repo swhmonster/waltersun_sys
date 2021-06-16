@@ -7,6 +7,7 @@ package com.waltersun.lastesttech.service;
 public interface CommonService {
     /**
      * 查询测试
+     * flink demo
      *
      * @return str
      */
