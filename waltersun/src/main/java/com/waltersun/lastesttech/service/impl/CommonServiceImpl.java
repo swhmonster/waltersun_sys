@@ -1,8 +1,5 @@
 package com.waltersun.lastesttech.service.impl;
 
-import java.time.Duration;
-
-import org.apache.flink.api.common.eventtime.WatermarkStrategy;
 import org.apache.flink.api.common.functions.FilterFunction;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
