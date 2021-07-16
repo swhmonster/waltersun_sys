@@ -6,6 +6,10 @@ import com.waltersun.lastesttech.bean.SpbtResponseEntity;
 
 import lombok.experimental.UtilityClass;
 
+/**
+ * @author walter
+ * @date 2021-06-16 19:35
+ */
 @UtilityClass
 public class ResponseUtils {
     /**

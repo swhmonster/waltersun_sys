@@ -11,12 +11,13 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
  * @author walter
+ * @date 2021-07-16
  */
 @Configuration
 @EnableSwagger2
 public class SwaggerConfig {
     @Bean
-    public Docket docket(){
+    public Docket docket() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .groupName("基础功能")
                 .select()

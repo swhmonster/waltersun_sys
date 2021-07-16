@@ -2,7 +2,9 @@ package com.waltersun.lastesttech.enums;
 
 /**
  * SeperateConstant
+ *
  * @author sunwh33441
+ * @date 2021-07-16
  */
 public enum SeperateConstant {
     /**
