@@ -21,7 +21,6 @@ mybatis:
 logging:
   file:
     name: waltersun.log
-    path: /home/waltersun/
   level:
     root: debug
 
