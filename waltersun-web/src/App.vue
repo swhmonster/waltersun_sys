@@ -16,7 +16,12 @@
         </el-carousel>
         <FileOperation v-show="activeIndex === '1'"></FileOperation>
       </el-main>
-      <el-footer>Copyright © 2020-2021</el-footer>
+      <el-footer>Copyright © 2020-2021
+        <a target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=F2RgfyAuIyZXZmY5dHh6"
+           style="text-decoration:none;">
+          <img src="http://rescdn.qqmail.com/zh_CN/htmledition/images/function/qm_open/ico_mailme_02.png"/>
+        </a>
+      </el-footer>
     </el-container>
   </div>
 </template>
