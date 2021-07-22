@@ -45,6 +45,17 @@ export default {
       ]
     }
   },
+  mounted() {
+    // 百度统计集成开始
+    const _hmt = _hmt || [];
+    (function () {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?565a7b05ee2b4d75932f0afb2c903ed8";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+    // 百度统计集成结束
+  },
   methods: {
     handleSelect(key) {
       this.activeIndex = key;

@@ -7,5 +7,5 @@ ${AnsiColor.BRIGHT_GREEN}
  \ \___x___/'\ \__/.\_\/\____\\ \__\ \____\\ \_\      \/\____/\ \____/\ \_\ \_\
   \/__//__/   \/__/\/_/\/____/ \/__/\/____/ \/_/       \/___/  \/___/  \/_/\/_/
 ${AnsiColor.BRIGHT_YELLOW}
-Spring Boot Version: ${spring-boot.version}${spring-boot.formatted-version}
-The developer: Walter
+Spring Boot Version:    ${spring-boot.version}${spring-boot.formatted-version}
+The developer:          Walter
