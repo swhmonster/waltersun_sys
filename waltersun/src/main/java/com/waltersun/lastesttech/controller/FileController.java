@@ -12,11 +12,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -51,6 +54,7 @@ public class FileController {
     private String path;
 
     private final CommonService commonService;
+    private final RedisTemplate redisTemplate;
 
     private static final String FILE_NAME = "fileName";
     private static final String FILE_ADRESS = "fileAddress";
@@ -108,7 +112,22 @@ public class FileController {
     @GetMapping("queryTest")
     @ApiOperation(value = "查询测试", response = String.class)
     @ResponseBody
-    public String queryTest(){
+    public String queryTest() {
         return commonService.queryTest();
+    }
+
+    @SneakyThrows
+    @GetMapping("redisTest")
+    @ApiOperation(value = "redis测试", response = String.class)
+    @ResponseBody
+    public String redisTest(@ApiParam(name = "key", value = "key", required = true)
+                            @RequestParam String key,
+                            @ApiParam(name = "value", value = "value", required = true)
+                            @RequestParam String value) {
+        log.debug("set::redis key:{},redis value:{}", key, value);
+        redisTemplate.boundValueOps("str" + key).set(value);
+        redisTemplate.boundListOps("list" + key).leftPush(value);
+        log.debug("set::redis key:{},redis value:{}", key, value);
+        return StringUtils.EMPTY;
     }
 }
