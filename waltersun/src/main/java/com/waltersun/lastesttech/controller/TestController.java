@@ -1,8 +1,14 @@
 package com.waltersun.lastesttech.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.data.redis.core.RedisOperations;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.SessionCallback;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -51,6 +57,28 @@ public class TestController {
         redisTemplate.boundValueOps("str" + key).set(value);
         redisTemplate.boundListOps("list" + key).leftPush(value);
         log.debug("set::redis key:{},redis value:{}", key, value);
+        return StringUtils.EMPTY;
+    }
+
+    @SneakyThrows
+    @GetMapping("redisTransactionTest")
+    @ApiOperation(value = "redis事务测试", response = List.class)
+    @ResponseBody
+    public String redisTransactionTest(@ApiParam(name = "key", value = "键", required = true)
+                                       @RequestParam String key,
+                                       @ApiParam(name = "value", value = "键值", required = true)
+                                       @RequestParam String value) {
+        log.debug("Transaction start::redis key:{},redis value:{}", key, value);
+        redisTemplate.execute(new SessionCallback<List<Object>>() {
+            @Override
+            public <K, V> List<Object> execute(RedisOperations<K, V> operations) throws DataAccessException {
+                redisTemplate.boundValueOps(key).set(value);
+                redisTemplate.multi();
+                redisTemplate.boundValueOps(key + "2").set(value + "==2");
+                return redisTemplate.exec();
+            }
+        });
+        log.debug("Transaction end::redis key:{},redis value:{}", key, value);
         return StringUtils.EMPTY;
     }
 
