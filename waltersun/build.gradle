@@ -35,7 +35,7 @@ dependencies {
     implementation 'org.apache.flink:flink-clients_2.11:1.13.1'
 
     implementation 'org.springframework.boot:spring-boot-starter-data-redis:2.5.3'
-//    implementation 'com.alicp.jetcache:jetcache-starter-redis:2.6.0'
+    implementation 'com.alicp.jetcache:jetcache-starter-redis:2.6.0'
 }
 
 test {

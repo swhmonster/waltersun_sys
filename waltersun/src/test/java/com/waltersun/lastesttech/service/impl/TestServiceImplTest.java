@@ -4,20 +4,20 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.waltersun.lastesttech.service.CommonService;
+import com.waltersun.lastesttech.service.TestService;
 
 /**
  * @author walter
  * @date 2021-06-04 14:18
  */
 @SpringBootTest
-class CommonServiceImplTest {
+class TestServiceImplTest {
 
     @Autowired
-    private CommonService commonService;
+    private TestService testService;
 
     @Test
     void queryTest() {
-        commonService.queryTest();
+        testService.queryTest();
     }
 }

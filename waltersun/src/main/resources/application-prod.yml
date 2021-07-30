@@ -14,7 +14,7 @@ spring:
     username: walter
     password: qweQWE123!@#
   redis:
-    host: 10.20.158.28
+    host: 118.195.145.14
     port: 6379
     password: redis
     database: 0
@@ -48,3 +48,26 @@ async:
       queue_capacity: 99999
       name:
         prefix: async-service-
+
+# jetcache缓存相关配置
+jetcache:
+  statIntervalMinutes: 15
+  areaInCacheName: false
+  local:
+    default:
+      type: linkedhashmap
+      keyConvertor: fastjson
+      limit: 100
+  remote:
+    default:
+      type: redis
+      keyConvertor: fastjson
+      valueEncoder: java
+      valueDecoder: java
+      poolConfig:
+        minIdle: 5
+        maxIdle: 20
+        maxTotal: 50
+      host: 118.195.145.14
+      port: 6379
+      password: redis
