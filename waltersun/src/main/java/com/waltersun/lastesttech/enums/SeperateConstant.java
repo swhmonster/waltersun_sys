@@ -72,4 +72,13 @@ public enum SeperateConstant {
         return this.seperate;
     }
 
+    public static SeperateConstant getEnum(String seperate){
+        for (SeperateConstant value : SeperateConstant.values()) {
+            if (value.seperate.equals(seperate)){
+                return value;
+            }
+        }
+        return null;
+    }
+
 }
