@@ -54,4 +54,9 @@ public class TestServiceImpl implements TestService {
     public String jetcacheTest(int condition) {
         return testMapper.jetcacheLimit1(condition);
     }
+
+    @Override
+    public String rocketmqTest(int condition) {
+        return null;
+    }
 }

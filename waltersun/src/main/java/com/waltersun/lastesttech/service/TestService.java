@@ -35,4 +35,10 @@ public interface TestService {
     @CacheRefresh(refresh = 60, stopRefreshAfterLastAccess = 60, timeUnit = TimeUnit.SECONDS)
     @CachePenetrationProtect
     String jetcacheTest(int condition);
+    /**
+     * rocketmq demo
+     *
+     * @return str
+     */
+    String rocketmqTest(int condition);
 }
