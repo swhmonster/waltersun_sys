@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.waltersun.lastesttech.bean.SpbtResponseEntity;
 import com.waltersun.lastesttech.kafka.KafkaProducer;
 import com.waltersun.lastesttech.mapper.TestMapper;
+import com.waltersun.lastesttech.rocketmq.RocketmqProducer;
 import com.waltersun.lastesttech.service.TestService;
 
 import lombok.RequiredArgsConstructor;
@@ -25,6 +26,7 @@ public class TestServiceImpl implements TestService {
 
     private final TestMapper testMapper;
     private final KafkaProducer kafkaProducer;
+    private final RocketmqProducer rocketmqProducer;
 
     @Override
     public String queryTest() {
@@ -59,8 +61,9 @@ public class TestServiceImpl implements TestService {
     }
 
     @Override
-    public String rocketmqTest(String msg) {
-        return null;
+    public String rocketmqTest(String topic, String msg) {
+        rocketmqProducer.send(topic, msg);
+        return StringUtils.EMPTY;
     }
 
     @Override

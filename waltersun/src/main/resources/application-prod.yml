@@ -90,3 +90,25 @@ jetcache:
       host: 118.195.145.14
       port: 6379
       password: redis
+
+# 自定义开关项
+switch:
+  # 是否开启mq监听
+  rocketmq:
+    enable: false
+
+# rocketmq配置
+rocketmq:
+  name-server: 10.20.158.28:9876
+  producer:
+    group: waltersun-producer-group
+    send-message-timeout: 3000
+    compress-message-body-threshold: 4096
+    max-message-size: 4194304
+    retry-times-when-send-failed: 2
+    retry-times-when-send-async-failed: 2
+    retry-next-server: false
+    access-key:
+    secret-key:
+    enable-msg-trace: true
+    customized-trace-topic: RMQ_SYS_TRACE_TOPIC

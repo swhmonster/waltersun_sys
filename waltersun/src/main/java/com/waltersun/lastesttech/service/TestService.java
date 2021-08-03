@@ -28,6 +28,7 @@ public interface TestService {
 
     /**
      * jetcache demo
+     *
      * @param condition 条件（可作为cachekey）
      * @return str
      */
@@ -39,10 +40,11 @@ public interface TestService {
     /**
      * rocketmq demo
      *
-     * @param msg 消息
+     * @param topic 主题
+     * @param msg   消息
      * @return str
      */
-    String rocketmqTest(String msg);
+    String rocketmqTest(String topic, String msg);
 
     /**
      * kafka demo

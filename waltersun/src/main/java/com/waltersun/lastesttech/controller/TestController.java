@@ -95,9 +95,11 @@ public class TestController {
     @GetMapping("rocketmqTest")
     @ApiOperation(value = "rocketmq测试", response = String.class)
     @ResponseBody
-    public String rocketmqTest(@ApiParam(name = "msg", value = "具体消息", required = true)
-                                   @RequestParam String msg) {
-        return testService.rocketmqTest(msg);
+    public String rocketmqTest(@ApiParam(name = "topic", value = "消息主题", required = true)
+                               @RequestParam String topic,
+                               @ApiParam(name = "msg", value = "具体消息", required = true)
+                               @RequestParam String msg) {
+        return testService.rocketmqTest(topic, msg);
     }
 
     @SneakyThrows
@@ -105,7 +107,7 @@ public class TestController {
     @ApiOperation(value = "kafka测试", response = String.class)
     @ResponseBody
     public String kafkaTest(@ApiParam(name = "msg", value = "具体消息", required = true)
-                               @RequestParam String msg) {
+                            @RequestParam String msg) {
         return testService.kafkaTest(msg);
     }
 }

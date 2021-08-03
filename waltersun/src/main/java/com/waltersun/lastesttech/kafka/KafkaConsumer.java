@@ -3,6 +3,7 @@ package com.waltersun.lastesttech.kafka;
 import java.util.Optional;
 
 import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.support.Acknowledgment;
 import org.springframework.kafka.support.KafkaHeaders;
@@ -16,6 +17,7 @@ import lombok.extern.slf4j.Slf4j;
  * @date 2021-08-03 19:33
  */
 @Component
+@ConditionalOnProperty(name = "switch.kafka.enable",havingValue ="true" )
 @Slf4j
 public class KafkaConsumer {
 
