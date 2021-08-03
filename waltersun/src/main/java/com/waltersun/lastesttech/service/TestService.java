@@ -28,17 +28,27 @@ public interface TestService {
 
     /**
      * jetcache demo
-     *
+     * @param condition 条件（可作为cachekey）
      * @return str
      */
     @Cached(expire = 180, cacheType = CacheType.REMOTE)
     @CacheRefresh(refresh = 60, stopRefreshAfterLastAccess = 60, timeUnit = TimeUnit.SECONDS)
     @CachePenetrationProtect
     String jetcacheTest(int condition);
+
     /**
      * rocketmq demo
      *
+     * @param msg 消息
      * @return str
      */
-    String rocketmqTest(int condition);
+    String rocketmqTest(String msg);
+
+    /**
+     * kafka demo
+     *
+     * @param msg 消息
+     * @return str
+     */
+    String kafkaTest(String msg);
 }

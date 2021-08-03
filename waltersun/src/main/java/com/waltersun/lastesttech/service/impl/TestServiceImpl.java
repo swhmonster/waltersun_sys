@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.waltersun.lastesttech.bean.SpbtResponseEntity;
+import com.waltersun.lastesttech.kafka.KafkaProducer;
 import com.waltersun.lastesttech.mapper.TestMapper;
 import com.waltersun.lastesttech.service.TestService;
 
@@ -21,7 +22,9 @@ import lombok.SneakyThrows;
 @Service
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class TestServiceImpl implements TestService {
+
     private final TestMapper testMapper;
+    private final KafkaProducer kafkaProducer;
 
     @Override
     public String queryTest() {
@@ -56,7 +59,13 @@ public class TestServiceImpl implements TestService {
     }
 
     @Override
-    public String rocketmqTest(int condition) {
+    public String rocketmqTest(String msg) {
         return null;
+    }
+
+    @Override
+    public String kafkaTest(String msg) {
+        kafkaProducer.send("hello world");
+        return StringUtils.EMPTY;
     }
 }

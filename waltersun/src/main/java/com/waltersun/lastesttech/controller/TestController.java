@@ -90,4 +90,22 @@ public class TestController {
                                @RequestParam int condition) {
         return testService.jetcacheTest(condition);
     }
+
+    @SneakyThrows
+    @GetMapping("rocketmqTest")
+    @ApiOperation(value = "rocketmq测试", response = String.class)
+    @ResponseBody
+    public String rocketmqTest(@ApiParam(name = "msg", value = "具体消息", required = true)
+                                   @RequestParam String msg) {
+        return testService.rocketmqTest(msg);
+    }
+
+    @SneakyThrows
+    @GetMapping("kafkaTest")
+    @ApiOperation(value = "kafka测试", response = String.class)
+    @ResponseBody
+    public String kafkaTest(@ApiParam(name = "msg", value = "具体消息", required = true)
+                               @RequestParam String msg) {
+        return testService.kafkaTest(msg);
+    }
 }
