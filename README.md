@@ -12,3 +12,5 @@
   - jetcache
   - flink
   - gradle
+  - rocketmq
+  - kafka
