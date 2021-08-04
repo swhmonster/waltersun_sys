@@ -128,10 +128,10 @@ switch:
 
 # rocketmq配置
 rocketmq:
-  name-server: 10.20.158.28:9876
+  name-server: 10.20.147.206:9876
   producer:
     # 生产者分组
-    group: erbadagang-producer-group
+    group: waltersun-producer-group
     # 发送消息超时时间，单位：毫秒。默认为 3000 。
     send-message-timeout: 3000
     # 消息压缩阀值，当消息体的大小超过该阀值后，进行消息压缩。默认为 4 * 1024B
