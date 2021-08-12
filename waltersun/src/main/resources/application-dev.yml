@@ -7,6 +7,8 @@ server:
     context-path: /api
 
 spring:
+  application:
+    name: waltersun-core
   datasource:
     url: jdbc:mysql://10.20.20.175:23061/dbtrade?useUnicode=true&characterEncoding=utf8&allowMultiQueries=TRUE
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -64,6 +66,12 @@ spring:
       #listner负责ack，每调用一次，就立即commit
       ack-mode: manual_immediate
       missing-topics-fatal: false
+
+eureka:
+  client:
+    serviceUrl:
+      #注册中心的注册地址
+      defaultZone: http://127.0.0.1:8761/eureka/
 
 mybatis:
   configuration:

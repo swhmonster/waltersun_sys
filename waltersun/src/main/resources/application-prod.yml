@@ -44,6 +44,12 @@ spring:
       ack-mode: manual_immediate
       missing-topics-fatal: false
 
+eureka:
+  client:
+    serviceUrl:
+      #注册中心的注册地址
+      defaultZone: http://127.0.0.1:8761/eureka/
+
 mybatis:
   configuration:
     map-underscore-to-camel-case: true

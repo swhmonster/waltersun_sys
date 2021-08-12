@@ -14,6 +14,7 @@ import com.alicp.jetcache.anno.config.EnableMethodCache;
 @MapperScan({"com.waltersun.lastesttech.mapper"})
 @EnableMethodCache(basePackages = "com.waltersun.lastesttech.service")
 @EnableCreateCacheAnnotation
+//@EnableEurekaClient
 @SpringBootApplication
 public class WaltersunApplication {
 

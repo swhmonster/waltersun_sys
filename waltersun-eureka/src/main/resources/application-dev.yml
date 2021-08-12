@@ -1,0 +1,26 @@
+server:
+  port: 8761
+
+eureka:
+  client:
+    #是否注册自己
+    registerWithEureka: false
+    #是否检索服务
+    fetchRegistry: false
+    #服务注册中心的配置内容，指定服务注册中心的位置
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+    webclient:
+      enabled: true
+  server:
+    waitTimeInMsWhenSyncEmpty: 0
+
+spring:
+  application:
+    name: eureka
+
+logging:
+  file:
+    name: waltersun-eureka.log
+  level:
+    root: debug
