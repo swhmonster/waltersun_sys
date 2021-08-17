@@ -42,6 +42,8 @@ dependencies {
     implementation 'org.springframework.kafka:spring-kafka:2.7.5'
     // rocketmq相关依赖
     implementation 'org.apache.rocketmq:rocketmq-spring-boot-starter:2.2.0'
+    // 序列化工具-google protobuf
+    implementation 'com.google.protobuf:protobuf-java:3.9.2'
 }
 
 test {

@@ -1,5 +1,7 @@
 package com.waltersun.lastesttech.service.impl;
 
+import java.util.Map;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.flink.api.common.functions.FilterFunction;
 import org.apache.flink.streaming.api.datastream.DataStream;
@@ -11,6 +13,7 @@ import com.waltersun.lastesttech.bean.SpbtResponseEntity;
 import com.waltersun.lastesttech.kafka.KafkaProducer;
 import com.waltersun.lastesttech.mapper.TestMapper;
 import com.waltersun.lastesttech.rocketmq.RocketmqProducer;
+import com.waltersun.lastesttech.service.SerializationService;
 import com.waltersun.lastesttech.service.TestService;
 
 import lombok.RequiredArgsConstructor;
@@ -27,6 +30,7 @@ public class TestServiceImpl implements TestService {
     private final TestMapper testMapper;
     private final KafkaProducer kafkaProducer;
     private final RocketmqProducer rocketmqProducer;
+    private final Map<String,SerializationService> SerializationServiceMap;
 
     @Override
     public String queryTest() {
@@ -70,5 +74,10 @@ public class TestServiceImpl implements TestService {
     public String kafkaTest(String msg) {
         kafkaProducer.send("hello world");
         return StringUtils.EMPTY;
+    }
+
+    @Override
+    public byte[] SerializeTest(String type1,String type2,String str) {
+        return SerializationServiceMap.get(type2).encoder(str);
     }
 }

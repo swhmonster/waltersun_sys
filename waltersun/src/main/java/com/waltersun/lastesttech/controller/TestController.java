@@ -1,6 +1,7 @@
 package com.waltersun.lastesttech.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -109,5 +110,18 @@ public class TestController {
     public String kafkaTest(@ApiParam(name = "msg", value = "具体消息", required = true)
                             @RequestParam String msg) {
         return testService.kafkaTest(msg);
+    }
+
+    @SneakyThrows
+    @GetMapping("profobufTest")
+    @ApiOperation(value = "profobuf测试", response = String.class)
+    @ResponseBody
+    public byte[] profobufTest(@ApiParam(name = "type1", value = "序列化方式：KryoImpl,ProtocolImpl", required = true)
+                            @RequestParam String type1,
+                               @ApiParam(name = "type2", value = "1:序列化;2:反序列化", required = true)
+                            @RequestParam String type2,
+                            @ApiParam(name = "str", value = "随机数据", required = true)
+                            @RequestParam String str) {
+        return testService.SerializeTest(type1, type2, str);
     }
 }

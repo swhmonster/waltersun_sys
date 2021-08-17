@@ -53,4 +53,14 @@ public interface TestService {
      * @return str
      */
     String kafkaTest(String msg);
+
+    /**
+     * Serialization demo
+     *
+     * @param type1 序列化方式
+     * @param type2 序列化or反序列化
+     * @param str 随机数据
+     * @return str
+     */
+    byte[] SerializeTest(String type1,String type2,String str);
 }
