@@ -2,11 +2,13 @@ package com.waltersun.lastesttech.controller;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.data.redis.connection.stream.ReadOffset;
 import org.springframework.data.redis.core.RedisOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.SessionCallback;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.alibaba.fastjson.JSON;
 import com.waltersun.lastesttech.service.TestService;
 
 import io.swagger.annotations.Api;
@@ -58,6 +61,17 @@ public class TestController {
         redisTemplate.boundValueOps("str" + key).set(value);
         redisTemplate.boundListOps("list" + key).leftPush(value);
         log.debug("set::redis key:{},redis value:{}", key, value);
+
+        // redis stream test
+        log.debug("redis stream test");
+        redisTemplate.boundStreamOps(key).add(new HashMap<String,String>(){
+            {
+                put("name", value);
+            }
+        });
+        wait(1);
+        var res = redisTemplate.boundStreamOps(key).read(ReadOffset.lastConsumed());
+        log.debug("stream read result{}", JSON.toJSONString(res));
         return StringUtils.EMPTY;
     }
 
