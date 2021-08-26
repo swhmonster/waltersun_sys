@@ -1,7 +1,5 @@
 package com.waltersun.lastesttech.controller;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -61,16 +59,24 @@ public class TestController {
         redisTemplate.boundValueOps("str" + key).set(value);
         redisTemplate.boundListOps("list" + key).leftPush(value);
         log.debug("set::redis key:{},redis value:{}", key, value);
+        return StringUtils.EMPTY;
+    }
 
-        // redis stream test
+    @SneakyThrows
+    @GetMapping("redisStreamTest")
+    @ApiOperation(value = "redisStream测试", response = String.class)
+    @ResponseBody
+    public String redisStreamTest(@ApiParam(name = "key", value = "键", required = true)
+                            @RequestParam String key,
+                            @ApiParam(name = "value", value = "键值", required = true)
+                            @RequestParam String value) {
         log.debug("redis stream test");
         redisTemplate.boundStreamOps(key).add(new HashMap<String,String>(){
             {
                 put("name", value);
             }
         });
-        wait(1);
-        var res = redisTemplate.boundStreamOps(key).read(ReadOffset.lastConsumed());
+        var res = redisTemplate.boundStreamOps(key).read(ReadOffset.from("0"));
         log.debug("stream read result{}", JSON.toJSONString(res));
         return StringUtils.EMPTY;
     }
