@@ -1,5 +1,6 @@
 package com.waltersun.lastesttech.service.impl;
 
+import java.time.LocalDateTime;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
@@ -7,6 +8,8 @@ import org.apache.flink.api.common.functions.FilterFunction;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import com.waltersun.lastesttech.bean.SpbtResponseEntity;
@@ -30,7 +33,10 @@ public class TestServiceImpl implements TestService {
     private final TestMapper testMapper;
     private final KafkaProducer kafkaProducer;
     private final RocketmqProducer rocketmqProducer;
-    private final Map<String,SerializationService> SerializationServiceMap;
+    private final Map<String, SerializationService> SerializationServiceMap;
+
+    private static ThreadLocal<String> threadLocal = new ThreadLocal<>();
+
 
     @Override
     public String queryTest() {
@@ -77,7 +83,21 @@ public class TestServiceImpl implements TestService {
     }
 
     @Override
-    public byte[] SerializeTest(String type1,String type2,String str) {
+    public byte[] SerializeTest(String type1, String type2, String str) {
         return SerializationServiceMap.get(type2).encoder(str);
+    }
+
+    @Async("asyncServiceExecutor")
+    @Scheduled(fixedRate = 2000)
+    @SneakyThrows
+    @Override
+    public void threadTest(String str) {
+        threadLocal.set(str);
+        Thread.sleep(6000);
+        System.out.println("Spring自带的线程池："
+                + Thread.currentThread().getName()
+                + LocalDateTime.now()
+                + "ThreadLocal："
+                + threadLocal.get());
     }
 }

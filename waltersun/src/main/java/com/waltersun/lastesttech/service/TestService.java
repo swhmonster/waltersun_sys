@@ -59,8 +59,14 @@ public interface TestService {
      *
      * @param type1 序列化方式
      * @param type2 序列化or反序列化
-     * @param str 随机数据
+     * @param str   随机数据
      * @return str
      */
-    byte[] SerializeTest(String type1,String type2,String str);
+    byte[] SerializeTest(String type1, String type2, String str);
+
+    /**
+     * @param str 随机数据
+     *            多线程测试
+     */
+    void threadTest(String str);
 }

@@ -67,11 +67,11 @@ public class TestController {
     @ApiOperation(value = "redisStream测试", response = String.class)
     @ResponseBody
     public String redisStreamTest(@ApiParam(name = "key", value = "键", required = true)
-                            @RequestParam String key,
-                            @ApiParam(name = "value", value = "键值", required = true)
-                            @RequestParam String value) {
+                                  @RequestParam String key,
+                                  @ApiParam(name = "value", value = "键值", required = true)
+                                  @RequestParam String value) {
         log.debug("redis stream test");
-        redisTemplate.boundStreamOps(key).add(new HashMap<String,String>(){
+        redisTemplate.boundStreamOps(key).add(new HashMap<String, String>() {
             {
                 put("name", value);
             }
@@ -137,11 +137,21 @@ public class TestController {
     @ApiOperation(value = "profobuf测试", response = String.class)
     @ResponseBody
     public byte[] profobufTest(@ApiParam(name = "type1", value = "序列化方式：KryoImpl,ProtocolImpl", required = true)
-                            @RequestParam String type1,
+                               @RequestParam String type1,
                                @ApiParam(name = "type2", value = "1:序列化;2:反序列化", required = true)
-                            @RequestParam String type2,
-                            @ApiParam(name = "str", value = "随机数据", required = true)
-                            @RequestParam String str) {
+                               @RequestParam String type2,
+                               @ApiParam(name = "str", value = "随机数据", required = true)
+                               @RequestParam String str) {
         return testService.SerializeTest(type1, type2, str);
+    }
+
+    @SneakyThrows
+    @GetMapping("threadTest")
+    @ApiOperation(value = "threadTest测试", response = String.class)
+    @ResponseBody
+    public String threadTest(@ApiParam(name = "str", value = "随机数据", required = true)
+                             @RequestParam String str) {
+        testService.threadTest(str);
+        return StringUtils.EMPTY;
     }
 }
