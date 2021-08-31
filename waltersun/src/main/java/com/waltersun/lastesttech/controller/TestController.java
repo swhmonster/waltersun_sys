@@ -154,4 +154,22 @@ public class TestController {
         testService.threadTest(str);
         return StringUtils.EMPTY;
     }
+
+    @SneakyThrows
+    @GetMapping("countDownLatchTest")
+    @ApiOperation(value = "countDownLatchTest测试", response = String.class)
+    @ResponseBody
+    public String countDownLatchTest() {
+        testService.countDownLatchTest();
+        return StringUtils.EMPTY;
+    }
+
+    @SneakyThrows
+    @GetMapping("cycleBarriTest")
+    @ApiOperation(value = "cycleBarriTest测试", response = String.class)
+    @ResponseBody
+    public String cycleBarriTest() {
+        testService.cycleBarriTest();
+        return StringUtils.EMPTY;
+    }
 }

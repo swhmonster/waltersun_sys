@@ -2,6 +2,11 @@ package com.waltersun.lastesttech.service.impl;
 
 import java.time.LocalDateTime;
 import java.util.Map;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.CyclicBarrier;
+import java.util.concurrent.Executor;
+
+import javax.annotation.Resource;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.flink.api.common.functions.FilterFunction;
@@ -21,11 +26,13 @@ import com.waltersun.lastesttech.service.TestService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author walter
  * @date 2021-06-03 11:31
  */
+@Slf4j
 @Service
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class TestServiceImpl implements TestService {
@@ -35,7 +42,12 @@ public class TestServiceImpl implements TestService {
     private final RocketmqProducer rocketmqProducer;
     private final Map<String, SerializationService> SerializationServiceMap;
 
-    private static ThreadLocal<String> threadLocal = new ThreadLocal<>();
+    @Resource(name = "asyncServiceExecutor")
+    private Executor asyncServiceExecutor;
+
+    private static final ThreadLocal<String> threadLocal = new ThreadLocal<>();
+    private static final CountDownLatch countDownLatch = new CountDownLatch(2);
+    private static final CyclicBarrier cyclicBarrier = new CyclicBarrier(2);
 
 
     @Override
@@ -99,5 +111,73 @@ public class TestServiceImpl implements TestService {
                 + LocalDateTime.now()
                 + "ThreadLocal："
                 + threadLocal.get());
+    }
+
+    @SneakyThrows
+    @Override
+    public void countDownLatchTest() {
+        log.debug("-----wait all children stop-----");
+
+        // thread1
+        asyncServiceExecutor.execute(() -> {
+            try {
+                log.debug("thread1 start");
+                Thread.sleep(1000);
+            } catch (Exception e) {
+                log.error("thread1 exception", e);
+            } finally {
+                countDownLatch.countDown();
+            }
+            log.debug("thread1 over");
+        });
+
+        // thread2
+        asyncServiceExecutor.execute(() -> {
+            try {
+                log.debug("thread2 start");
+                Thread.sleep(1000);
+            } catch (Exception e) {
+                log.error("thread2 exception", e);
+            } finally {
+                countDownLatch.countDown();
+            }
+            log.debug("thread2 over");
+        });
+
+        countDownLatch.await();
+        log.debug("-----all children is stoped-----");
+    }
+
+    @Override
+    public void cycleBarriTest() {
+        // thread1
+        asyncServiceExecutor.execute(() -> {
+            try {
+                log.debug("thread1 step1");
+                cyclicBarrier.await();
+
+                log.debug("thread1 step2");
+                cyclicBarrier.await();
+
+                log.debug("thread1 step3");
+            } catch (Exception e) {
+                log.error("thread1 exception", e);
+            }
+        });
+
+        // thread2
+        asyncServiceExecutor.execute(() -> {
+            try {
+                log.debug("thread2 step1");
+                cyclicBarrier.await();
+
+                log.debug("thread2 step2");
+                cyclicBarrier.await();
+
+                log.debug("thread2 step3");
+            } catch (Exception e) {
+                log.error("thread1 exception", e);
+            }
+        });
     }
 }

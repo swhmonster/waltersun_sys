@@ -65,8 +65,20 @@ public interface TestService {
     byte[] SerializeTest(String type1, String type2, String str);
 
     /**
+     * 线程池 结合 threadlocal 测试
+     *
      * @param str 随机数据
      *            多线程测试
      */
     void threadTest(String str);
+
+    /**
+     * countDownLatchTest测试
+     */
+    void countDownLatchTest();
+
+    /**
+     * cycleBarriTest测试
+     */
+    void cycleBarriTest();
 }
