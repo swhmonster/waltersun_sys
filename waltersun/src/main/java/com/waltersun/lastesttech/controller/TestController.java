@@ -172,4 +172,12 @@ public class TestController {
         testService.cycleBarriTest();
         return StringUtils.EMPTY;
     }
+
+    @SneakyThrows
+    @GetMapping("aopTest")
+    @ApiOperation(value = "aopTest测试", response = String.class)
+    @ResponseBody
+    public String aopTest() {
+        return testService.aopTest();
+    }
 }

@@ -81,4 +81,9 @@ public interface TestService {
      * cycleBarriTest测试
      */
     void cycleBarriTest();
+
+    /**
+     * cycleBarriTest测试
+     */
+    String aopTest();
 }

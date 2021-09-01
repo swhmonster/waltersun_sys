@@ -17,6 +17,7 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import com.waltersun.lastesttech.annotation.MyAnnotation;
 import com.waltersun.lastesttech.bean.SpbtResponseEntity;
 import com.waltersun.lastesttech.kafka.KafkaProducer;
 import com.waltersun.lastesttech.mapper.TestMapper;
@@ -179,5 +180,12 @@ public class TestServiceImpl implements TestService {
                 log.error("thread1 exception", e);
             }
         });
+    }
+
+    @Override
+    @MyAnnotation
+    public String aopTest() {
+        log.debug("aop testing ...");
+        return "aop result";
     }
 }
