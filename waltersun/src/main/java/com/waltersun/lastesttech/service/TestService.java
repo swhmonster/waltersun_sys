@@ -84,6 +84,13 @@ public interface TestService {
 
     /**
      * cycleBarriTest测试
+     *
+     * @return str
      */
     String aopTest();
+
+    /**
+     * synchronizedTest测试
+     */
+    void synchronizedTest();
 }

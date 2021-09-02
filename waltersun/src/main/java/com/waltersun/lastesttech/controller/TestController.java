@@ -180,4 +180,13 @@ public class TestController {
     public String aopTest() {
         return testService.aopTest();
     }
+
+    @SneakyThrows
+    @GetMapping("synchronizedTest")
+    @ApiOperation(value = "synchronizedTest测试", response = String.class)
+    @ResponseBody
+    public String synchronizedTest() {
+        testService.synchronizedTest();
+        return StringUtils.EMPTY;
+    }
 }

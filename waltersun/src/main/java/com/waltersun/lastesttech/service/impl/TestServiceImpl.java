@@ -1,7 +1,10 @@
 package com.waltersun.lastesttech.service.impl;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.CyclicBarrier;
 import java.util.concurrent.Executor;
@@ -187,5 +190,26 @@ public class TestServiceImpl implements TestService {
     public String aopTest() {
         log.debug("aop testing ...");
         return "aop result";
+    }
+
+    @SneakyThrows
+    @Override
+    public void synchronizedTest() {
+        final int[] i = {0};
+        for (int j = 0; j < 20; j++) {
+            synchronized (i) {
+                asyncServiceExecutor.execute(() -> {
+                    log.debug("synchronizedTest:" + Thread.currentThread().getName() + ":i=" + i[0]++);
+                });
+            }
+        }
+
+        // 仅用作笔记
+        CompletableFuture<Integer> completableFuture1 = CompletableFuture.supplyAsync(() -> i[0]++);
+        CompletableFuture<Integer> completableFuture2 = CompletableFuture.supplyAsync(() -> i[0]++, asyncServiceExecutor);
+        CompletableFuture.allOf(completableFuture1, completableFuture2);
+        int j = completableFuture1.get();
+        int k = completableFuture2.get();
+        log.debug("completableFuture1:{},completableFuture2:{}", j, k);
     }
 }
