@@ -8,6 +8,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.CyclicBarrier;
 import java.util.concurrent.Executor;
+import java.util.concurrent.TimeUnit;
 
 import javax.annotation.Resource;
 
@@ -126,7 +127,8 @@ public class TestServiceImpl implements TestService {
         asyncServiceExecutor.execute(() -> {
             try {
                 log.debug("thread1 start");
-                Thread.sleep(1000);
+                // 推荐用TimeUnit替代Thread.sleep
+                TimeUnit.MILLISECONDS.sleep(2);
             } catch (Exception e) {
                 log.error("thread1 exception", e);
             } finally {
@@ -139,7 +141,7 @@ public class TestServiceImpl implements TestService {
         asyncServiceExecutor.execute(() -> {
             try {
                 log.debug("thread2 start");
-                Thread.sleep(1000);
+                TimeUnit.MILLISECONDS.sleep(3);
             } catch (Exception e) {
                 log.error("thread2 exception", e);
             } finally {
