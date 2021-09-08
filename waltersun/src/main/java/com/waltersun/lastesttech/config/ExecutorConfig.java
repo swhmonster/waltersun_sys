@@ -1,7 +1,10 @@
 package com.waltersun.lastesttech.config;
 
 import java.util.concurrent.Executor;
+import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
+import java.util.function.Predicate;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -51,6 +54,18 @@ public class ExecutorConfig {
         executor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
         // 执行初始化
         executor.initialize();
+        return executor;
+    }
+
+    /**
+     * resource注入使用
+     *
+     * @return excutor
+     */
+    @Bean(name = "forkJoinPool")
+    public Executor forkJoinPool() {
+        log.info("start forkJoinPool");
+        Executor executor = new ForkJoinPool();
         return executor;
     }
 }
