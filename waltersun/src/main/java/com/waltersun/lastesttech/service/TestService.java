@@ -98,4 +98,36 @@ public interface TestService {
      * forkJoinTest测试
      */
     void forkJoinTest();
+
+    /**
+     * redisTest测试
+     *
+     * @param key   键
+     * @param value 键值
+     */
+    void redisTest(String key, String value);
+
+    /**
+     * redisStreamTest测试
+     *
+     * @param key   键
+     * @param value 键值
+     */
+    void redisStreamTest(String key, String value);
+
+    /**
+     * redisTransactionTest测试
+     *
+     * @param key   键
+     * @param value 键值
+     */
+    void redisTransactionTest(String key, String value);
+
+    /**
+     * redisPipeliningTest测试
+     *
+     * @param key   键
+     * @param value 键值
+     */
+    void redisPipeliningTest(String key, String value);
 }

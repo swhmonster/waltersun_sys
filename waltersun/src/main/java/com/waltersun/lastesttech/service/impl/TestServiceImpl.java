@@ -1,6 +1,8 @@
 package com.waltersun.lastesttech.service.impl;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CountDownLatch;
@@ -16,12 +18,21 @@ import org.apache.flink.api.common.functions.FilterFunction;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.data.redis.connection.RedisConnection;
+import org.springframework.data.redis.connection.stream.ReadOffset;
+import org.springframework.data.redis.core.RedisCallback;
+import org.springframework.data.redis.core.RedisOperations;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.SessionCallback;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import com.alibaba.fastjson.JSON;
 import com.waltersun.lastesttech.annotation.MyAnnotation;
 import com.waltersun.lastesttech.bean.SpbtResponseEntity;
+import com.waltersun.lastesttech.enums.SeperateConstant;
 import com.waltersun.lastesttech.kafka.KafkaProducer;
 import com.waltersun.lastesttech.mapper.TestMapper;
 import com.waltersun.lastesttech.rocketmq.RocketmqProducer;
@@ -41,7 +52,9 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class TestServiceImpl implements TestService {
 
+
     private final TestMapper testMapper;
+    private final RedisTemplate redisTemplate;
     private final KafkaProducer kafkaProducer;
     private final RocketmqProducer rocketmqProducer;
     private final Map<String, SerializationService> SerializationServiceMap;
@@ -218,9 +231,59 @@ public class TestServiceImpl implements TestService {
 
     @Override
     public void forkJoinTest() {
-        for(int i =0;i<10;i++) {
+        for (int i = 0; i < 10; i++) {
             int finalI = i;
-            forkJoinPool.execute(()->log.debug("forkJoinTest:" + Thread.currentThread().getName() + ":i=" + finalI));
+            forkJoinPool.execute(() -> log.debug("forkJoinTest:" + Thread.currentThread().getName() + ":i=" + finalI));
         }
+    }
+
+    @Override
+    public void redisTest(String key, String value) {
+        log.debug("set::redis key:{},redis value:{}", key, value);
+        redisTemplate.boundValueOps("str" + key).set(value);
+        redisTemplate.boundListOps("list" + key).leftPush(value);
+        log.debug("set::redis key:{},redis value:{}", key, value);
+    }
+
+    @Override
+    public void redisStreamTest(String key, String value) {
+        log.debug("redis stream test");
+        redisTemplate.boundStreamOps(key).add(new HashMap<String, String>() {
+            {
+                put("name", value);
+            }
+        });
+        var res = redisTemplate.boundStreamOps(key).read(ReadOffset.from("0"));
+        log.debug("stream read result{}", JSON.toJSONString(res));
+    }
+
+    @Override
+    public void redisTransactionTest(String key, String value) {
+        log.debug("Transaction start::redis key:{},redis value:{}", key, value);
+        redisTemplate.execute(new SessionCallback<List<Object>>() {
+            @Override
+            public <K, V> List<Object> execute(RedisOperations<K, V> operations) throws DataAccessException {
+                redisTemplate.boundValueOps(key).set(value);
+                redisTemplate.multi();
+                redisTemplate.boundValueOps(key + "2").set(value + "==2");
+                return redisTemplate.exec();
+            }
+        });
+        log.debug("Transaction end::redis key:{},redis value:{}", key, value);
+    }
+
+    @Override
+    public void redisPipeliningTest(String key, String value) {
+        // RedisCallback需要处理底层逻辑，SessionCallback更高层的封装（使用较为友好）
+        redisTemplate.executePipelined(new SessionCallback<>() {
+            @Override
+            public <K, V> Object execute(RedisOperations<K, V> operations) throws DataAccessException {
+                for (int i = 0; i < 100; i++) {
+                    operations.boundListOps((K) key)
+                            .rightPush((V) (i + SeperateConstant.SEPERATE_HG.getSeperate() + value + LocalDateTime.now()));
+                }
+                return null;
+            }
+        });
     }
 }

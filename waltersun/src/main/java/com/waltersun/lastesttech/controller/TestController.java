@@ -37,7 +37,6 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class TestController {
     private final TestService testService;
-    private final RedisTemplate redisTemplate;
 
     @SneakyThrows
     @GetMapping("queryTest")
@@ -55,10 +54,7 @@ public class TestController {
                             @RequestParam String key,
                             @ApiParam(name = "value", value = "键值", required = true)
                             @RequestParam String value) {
-        log.debug("set::redis key:{},redis value:{}", key, value);
-        redisTemplate.boundValueOps("str" + key).set(value);
-        redisTemplate.boundListOps("list" + key).leftPush(value);
-        log.debug("set::redis key:{},redis value:{}", key, value);
+        testService.redisTest(key, value);
         return StringUtils.EMPTY;
     }
 
@@ -70,36 +66,19 @@ public class TestController {
                                   @RequestParam String key,
                                   @ApiParam(name = "value", value = "键值", required = true)
                                   @RequestParam String value) {
-        log.debug("redis stream test");
-        redisTemplate.boundStreamOps(key).add(new HashMap<String, String>() {
-            {
-                put("name", value);
-            }
-        });
-        var res = redisTemplate.boundStreamOps(key).read(ReadOffset.from("0"));
-        log.debug("stream read result{}", JSON.toJSONString(res));
+        testService.redisStreamTest(key, value);
         return StringUtils.EMPTY;
     }
 
     @SneakyThrows
-    @GetMapping("redisTransactionTest")
-    @ApiOperation(value = "redis事务测试", response = List.class)
+    @GetMapping("redisPipeliningTest")
+    @ApiOperation(value = "redis PipeLining 管道测试", response = List.class)
     @ResponseBody
-    public String redisTransactionTest(@ApiParam(name = "key", value = "键", required = true)
+    public String redisPipeliningTest(@ApiParam(name = "key", value = "键", required = true)
                                        @RequestParam String key,
                                        @ApiParam(name = "value", value = "键值", required = true)
                                        @RequestParam String value) {
-        log.debug("Transaction start::redis key:{},redis value:{}", key, value);
-        redisTemplate.execute(new SessionCallback<List<Object>>() {
-            @Override
-            public <K, V> List<Object> execute(RedisOperations<K, V> operations) throws DataAccessException {
-                redisTemplate.boundValueOps(key).set(value);
-                redisTemplate.multi();
-                redisTemplate.boundValueOps(key + "2").set(value + "==2");
-                return redisTemplate.exec();
-            }
-        });
-        log.debug("Transaction end::redis key:{},redis value:{}", key, value);
+        testService.redisPipeliningTest(key, value);
         return StringUtils.EMPTY;
     }
 
