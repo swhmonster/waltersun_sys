@@ -1,13 +1,12 @@
 package com.waltersun.lastesttech.service.impl;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.CyclicBarrier;
 import java.util.concurrent.Executor;
+import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.TimeUnit;
 
 import javax.annotation.Resource;
@@ -49,6 +48,8 @@ public class TestServiceImpl implements TestService {
 
     @Resource(name = "asyncServiceExecutor")
     private Executor asyncServiceExecutor;
+    @Resource(name = "forkJoinPool")
+    private ForkJoinPool forkJoinPool;
 
     private static final ThreadLocal<String> threadLocal = new ThreadLocal<>();
     private static final CountDownLatch countDownLatch = new CountDownLatch(2);
@@ -213,5 +214,13 @@ public class TestServiceImpl implements TestService {
         int j = completableFuture1.get();
         int k = completableFuture2.get();
         log.debug("completableFuture1:{},completableFuture2:{}", j, k);
+    }
+
+    @Override
+    public void forkJoinTest() {
+        for(int i =0;i<10;i++) {
+            int finalI = i;
+            forkJoinPool.execute(()->log.debug("forkJoinTest:" + Thread.currentThread().getName() + ":i=" + finalI));
+        }
     }
 }

@@ -189,4 +189,13 @@ public class TestController {
         testService.synchronizedTest();
         return StringUtils.EMPTY;
     }
+
+    @SneakyThrows
+    @GetMapping("forkJoinTest")
+    @ApiOperation(value = "forkJoinTest测试", response = String.class)
+    @ResponseBody
+    public String forkJoinTest() {
+        testService.forkJoinTest();
+        return StringUtils.EMPTY;
+    }
 }

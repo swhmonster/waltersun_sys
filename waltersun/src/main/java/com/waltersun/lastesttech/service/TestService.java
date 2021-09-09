@@ -93,4 +93,9 @@ public interface TestService {
      * synchronizedTest测试
      */
     void synchronizedTest();
+
+    /**
+     * forkJoinTest测试
+     */
+    void forkJoinTest();
 }

@@ -59,13 +59,13 @@ public class ExecutorConfig {
 
     /**
      * resource注入使用
+     * 获取forkjoin公共池
      *
      * @return excutor
      */
     @Bean(name = "forkJoinPool")
-    public Executor forkJoinPool() {
-        log.info("start forkJoinPool");
-        Executor executor = new ForkJoinPool();
-        return executor;
+    public ForkJoinPool forkJoinPool() {
+        log.info("get ForkJoinPool.commonPool()");
+        return ForkJoinPool.commonPool();
     }
 }
