@@ -7,7 +7,10 @@ plugins {
 
 group = 'com.waltersun'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
+// 编译环境版本
+sourceCompatibility = JavaVersion.VERSION_11
+// 目标运行环境版本
+targetCompatibility = JavaVersion.VERSION_11
 
 configurations {
     compileOnly {
