@@ -1,0 +1,1 @@
+redis.call('set', KEYS[1], ARGV[1]) local str = redis.call('get', KEYS[1])   return str

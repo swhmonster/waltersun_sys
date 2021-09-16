@@ -1,6 +1,8 @@
 package com.waltersun.lastesttech.service.impl;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +20,7 @@ import org.apache.flink.api.common.functions.FilterFunction;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.connection.stream.ReadOffset;
@@ -25,12 +28,17 @@ import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.SessionCallback;
+import org.springframework.data.redis.core.script.DefaultRedisScript;
+import org.springframework.data.redis.core.script.RedisScript;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.scripting.ScriptSource;
+import org.springframework.scripting.support.ResourceScriptSource;
 import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSON;
 import com.waltersun.lastesttech.annotation.MyAnnotation;
+import com.waltersun.lastesttech.bean.RedisLuaBean;
 import com.waltersun.lastesttech.bean.SpbtResponseEntity;
 import com.waltersun.lastesttech.enums.SeperateConstant;
 import com.waltersun.lastesttech.kafka.KafkaProducer;
@@ -255,6 +263,21 @@ public class TestServiceImpl implements TestService {
         });
         var res = redisTemplate.boundStreamOps(key).read(ReadOffset.from("0"));
         log.debug("stream read result{}", JSON.toJSONString(res));
+    }
+
+    @Override
+    public void redisLuaTest(String key, String value) {
+        // 注意 KEYS  ARGV 需要大写，否则报错
+        String script = "redis.call('set', KEYS[1], ARGV[1]) local str = redis.call('get', KEYS[1])   return str";
+        DefaultRedisScript<RedisLuaBean> defaultRedisScript = new DefaultRedisScript<>(script, RedisLuaBean.class);
+        List<String> keys = List.of(key);
+        String value1 = JSON.toJSONString(RedisLuaBean.builder()
+                .id(1)
+                .name("redis-lua" + value)
+                .description("redis-lua-test" + value)
+                .build());
+        Object result = redisTemplate.execute(defaultRedisScript, keys, value1);
+        log.debug("redis lua result:{}", JSON.toJSONString(result));
     }
 
     @Override

@@ -116,6 +116,14 @@ public interface TestService {
     void redisStreamTest(String key, String value);
 
     /**
+     * redisLuaTest测试
+     *
+     * @param key   键
+     * @param value 键值
+     */
+    void redisLuaTest(String key, String value);
+
+    /**
      * redisTransactionTest测试
      *
      * @param key   键

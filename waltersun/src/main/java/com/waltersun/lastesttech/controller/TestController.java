@@ -71,13 +71,25 @@ public class TestController {
     }
 
     @SneakyThrows
+    @GetMapping("redisLuaTest")
+    @ApiOperation(value = "redisLuaTest测试", response = String.class)
+    @ResponseBody
+    public String redisLuaTest(@ApiParam(name = "key", value = "键", required = true)
+                               @RequestParam String key,
+                               @ApiParam(name = "value", value = "键值", required = true)
+                               @RequestParam String value) {
+        testService.redisLuaTest(key, value);
+        return StringUtils.EMPTY;
+    }
+
+    @SneakyThrows
     @GetMapping("redisPipeliningTest")
     @ApiOperation(value = "redis PipeLining 管道测试", response = List.class)
     @ResponseBody
     public String redisPipeliningTest(@ApiParam(name = "key", value = "键", required = true)
-                                       @RequestParam String key,
-                                       @ApiParam(name = "value", value = "键值", required = true)
-                                       @RequestParam String value) {
+                                      @RequestParam String key,
+                                      @ApiParam(name = "value", value = "键值", required = true)
+                                      @RequestParam String value) {
         testService.redisPipeliningTest(key, value);
         return StringUtils.EMPTY;
     }
