@@ -229,8 +229,16 @@ public class TestServiceImpl implements TestService {
         }
 
         // 仅用作笔记
-        CompletableFuture<Integer> completableFuture1 = CompletableFuture.supplyAsync(() -> i[0]++);
-        CompletableFuture<Integer> completableFuture2 = CompletableFuture.supplyAsync(() -> i[0]++, asyncServiceExecutor);
+        CompletableFuture<Integer> completableFuture1 =
+                CompletableFuture.supplyAsync(() -> i[0]++).exceptionally(e -> {
+                    log.error("completableFuture1 error", e);
+                    return i[0];
+                });
+        CompletableFuture<Integer> completableFuture2 =
+                CompletableFuture.supplyAsync(() -> i[0]++, asyncServiceExecutor).exceptionally(e -> {
+                    log.error("completableFuture2 error", e);
+                    return i[0];
+                });
         CompletableFuture.allOf(completableFuture1, completableFuture2);
         int j = completableFuture1.get();
         int k = completableFuture2.get();
