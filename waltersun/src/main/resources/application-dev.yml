@@ -71,7 +71,7 @@ eureka:
   client:
     serviceUrl:
       #注册中心的注册地址
-      defaultZone: http://10.20.147.206:8761/eureka/
+      defaultZone: http://127.0.0.1:8761/eureka/
 
 mybatis:
   configuration:
