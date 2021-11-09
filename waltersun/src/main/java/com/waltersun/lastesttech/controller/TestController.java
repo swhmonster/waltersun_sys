@@ -189,4 +189,12 @@ public class TestController {
         testService.forkJoinTest();
         return StringUtils.EMPTY;
     }
+    @SneakyThrows
+    @GetMapping("lazySupplierTest")
+    @ApiOperation(value = "lazySupplierTest测试", response = String.class)
+    @ResponseBody
+    public String lazySupplierTest() {
+        testService.lazySupplierTest();
+        return StringUtils.EMPTY;
+    }
 }

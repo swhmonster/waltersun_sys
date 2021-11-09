@@ -138,4 +138,9 @@ public interface TestService {
      * @param value 键值
      */
     void redisPipeliningTest(String key, String value);
+
+    /**
+     * LazySupplier test
+     */
+    void lazySupplierTest();
 }

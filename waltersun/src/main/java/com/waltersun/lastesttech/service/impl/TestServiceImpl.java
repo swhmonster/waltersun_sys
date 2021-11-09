@@ -307,4 +307,13 @@ public class TestServiceImpl implements TestService {
             }
         });
     }
+
+    @Override
+    public void lazySupplierTest() {
+        LazySupplier<Integer> a = LazySupplier.of(() -> 10 + 1);
+        int b = a.get() + 1;
+        // get 不会再重新计算, 直接用缓存的值
+        int c = a.get();
+        log.debug("b:{},c:{}",b,c);
+    }
 }
