@@ -48,6 +48,7 @@ dependencies {
     implementation 'org.apache.rocketmq:rocketmq-spring-boot-starter:2.2.0'
     // 序列化工具-google protobuf
     implementation 'com.google.protobuf:protobuf-java:3.17.3'
+    implementation 'org.junit.jupiter:junit-jupiter:5.8.1'
 }
 
 test {

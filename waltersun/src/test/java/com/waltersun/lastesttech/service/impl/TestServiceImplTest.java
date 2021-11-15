@@ -1,5 +1,6 @@
 package com.waltersun.lastesttech.service.impl;
 
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,5 +20,10 @@ class TestServiceImplTest {
     @Test
     void queryTest() {
         testService.queryTest();
+    }
+
+    @Test
+    void countDownLatchTest() {
+        testService.countDownLatchTest();
     }
 }
