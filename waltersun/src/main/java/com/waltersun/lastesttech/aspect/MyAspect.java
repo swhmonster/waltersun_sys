@@ -6,9 +6,11 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
 
 import com.alibaba.fastjson.JSON;
+import com.waltersun.lastesttech.annotation.MyAnnotation;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -40,8 +42,13 @@ public class MyAspect {
      */
     @Around("pointCut()")
     public void aroundAdvice(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
-        log.debug("aspect around front");
+        // get annotation params
+        MethodSignature signature = (MethodSignature) proceedingJoinPoint.getSignature();
+        MyAnnotation annotation = signature.getMethod().getAnnotation(MyAnnotation.class);
+        String annotationValue = annotation.value();
+
+        log.debug("annotationValue:{},aspect around front", annotationValue);
         Object obj = proceedingJoinPoint.proceed();
-        log.debug("aspect around end :{}",JSON.toJSONString(obj));
+        log.debug("annotationValue:{},aspect around end :{}", annotationValue, JSON.toJSONString(obj));
     }
 }
