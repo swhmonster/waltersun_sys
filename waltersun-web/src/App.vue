@@ -5,7 +5,7 @@
                 <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect"
                          background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
                     <el-menu-item index="1">Downloads 下载</el-menu-item>
-                    <el-menu-item index="2">item</el-menu-item>
+                    <el-menu-item index="2">加解密工具</el-menu-item>
                 </el-menu>
             </el-header>
             <el-main>
@@ -15,7 +15,7 @@
                     </el-carousel-item>
                 </el-carousel>
                 <FileOperation v-show="activeIndex === '1'"></FileOperation>
-                <hello-world v-show="activeIndex === '2'"></hello-world>
+                <CipherOperation v-show="activeIndex === '2'"></CipherOperation>
             </el-main>
             <el-footer>Copyright © 2020-present
                 <a target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=F2RgfyAuIyZXZmY5dHh6"
@@ -30,12 +30,12 @@
 <script>
 import FileOperation from './components/FileOperation.vue'
 import 'element-ui/lib/theme-chalk/index.css'
-import HelloWorld from "@/components/HelloWorld.vue";
+import CipherOperation from "@/components/CipherOperation.vue";
 
 export default {
     name: 'App',
     components: {
-        HelloWorld,
+        CipherOperation,
         FileOperation
     },
     data() {
