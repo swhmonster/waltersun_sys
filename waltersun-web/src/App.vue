@@ -6,6 +6,7 @@
                          background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
                     <el-menu-item index="1">Downloads 下载</el-menu-item>
                     <el-menu-item index="2">加解密工具</el-menu-item>
+                    <el-menu-item index="3">时间戳工具</el-menu-item>
                 </el-menu>
             </el-header>
             <el-main>
@@ -16,6 +17,7 @@
                 </el-carousel>
                 <FileOperation v-show="activeIndex === '1'"></FileOperation>
                 <CipherOperation v-show="activeIndex === '2'"></CipherOperation>
+                <DateTimeOperation v-show="activeIndex === '3'"></DateTimeOperation>
             </el-main>
             <el-footer>Copyright © 2020-present
                 <a target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=F2RgfyAuIyZXZmY5dHh6"
@@ -31,10 +33,12 @@
 import FileOperation from './components/FileOperation.vue'
 import 'element-ui/lib/theme-chalk/index.css'
 import CipherOperation from "@/components/CipherOperation.vue";
+import DateTimeOperation from "@/components/DateTimeOperation.vue";
 
 export default {
     name: 'App',
     components: {
+        DateTimeOperation,
         CipherOperation,
         FileOperation
     },
