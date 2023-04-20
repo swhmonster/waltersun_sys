@@ -2,7 +2,7 @@
     <el-table :data="linkList" v-loading="loading">
         <el-table-column prop="fileName" label="下载列表"/>
         <el-table-column prop="fileName" label="" width="110">
-            <template slot-scope="scope">
+            <template v-slot:default="scope">
                 <el-button type="primary" size="mini" @click="download(scope.row.fileAddress, scope.row.fileName)">
                     download
                 </el-button>

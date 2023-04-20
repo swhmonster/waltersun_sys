@@ -9,7 +9,7 @@
                 </el-menu>
             </el-header>
             <el-main>
-                <el-carousel indicator-position="outside" :interval="5000">
+                <el-carousel indicator-position="outside" :interval="8000">
                     <el-carousel-item v-for="item in arr" :key="item">
                         <h3>{{ item }}</h3>
                     </el-carousel-item>
@@ -20,7 +20,7 @@
             <el-footer>Copyright © 2020-present
                 <a target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=F2RgfyAuIyZXZmY5dHh6"
                    style="text-decoration:none;">
-                    <img src="http://rescdn.qqmail.com/zh_CN/htmledition/images/function/qm_open/ico_mailme_02.png"/>
+                    <img src="http://rescdn.qqmail.com/zh_CN/htmledition/images/function/qm_open/ico_mailme_02.png" alt="email me"/>
                 </a>
             </el-footer>
         </el-container>
