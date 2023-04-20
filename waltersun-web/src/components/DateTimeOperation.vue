@@ -126,7 +126,7 @@ export default {
             });
 
             if (validateFlag) {
-                this.$axios.get('/api/datetime/datetime?unit=' + this.form1.unit + '&timestamp=' + this.form1.timestamp, {}).then(res => {
+                this.$axios.get('/api/utils/datetime?unit=' + this.form1.unit + '&timestamp=' + this.form1.timestamp, {}).then(res => {
                     this.form1.datetime = res.data;
                 }).catch(err => {
                     this.$message.error('转换异常，请检查入参！');
@@ -148,7 +148,7 @@ export default {
             });
 
             if (validateFlag) {
-                this.$axios.get('/api/datetime/timestamp?unit=' + this.form2.unit + '&dateTime=' + this.form2.datetime, {}).then(res => {
+                this.$axios.get('/api/utils/timestamp?unit=' + this.form2.unit + '&dateTime=' + this.form2.datetime, {}).then(res => {
                     this.form2.timestamp = res.data;
                 }).catch(err => {
                     this.$message.error('转换异常，请检查入参！');
