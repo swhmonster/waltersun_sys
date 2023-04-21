@@ -5,7 +5,7 @@
             <el-radio v-model="form.type" label="AES">AES</el-radio>
         </el-form-item>
         <el-form-item label="加解密密钥" prop="checkSecretKey">
-            <el-input placeholder="请输入密钥" v-model="form.key" show-password></el-input>
+            <el-input placeholder="请输入密钥" v-model="form.key" show-password clearable></el-input>
         </el-form-item>
         <el-form-item label="加解密内容">
             <el-input
