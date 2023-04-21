@@ -4,9 +4,9 @@
             <el-header>
                 <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect"
                          background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
-                    <el-menu-item index="1">Downloads 下载</el-menu-item>
+                    <el-menu-item index="1">时间戳工具</el-menu-item>
                     <el-menu-item index="2">加解密工具</el-menu-item>
-                    <el-menu-item index="3">时间戳工具</el-menu-item>
+                    <el-menu-item index="3">其他工具下载</el-menu-item>
                 </el-menu>
             </el-header>
             <el-main>
@@ -15,9 +15,9 @@
                         <h3>{{ item }}</h3>
                     </el-carousel-item>
                 </el-carousel>
-                <FileOperation v-show="activeIndex === '1'"></FileOperation>
+                <DateTimeOperation v-show="activeIndex === '1'"></DateTimeOperation>
                 <CipherOperation v-show="activeIndex === '2'"></CipherOperation>
-                <DateTimeOperation v-show="activeIndex === '3'"></DateTimeOperation>
+                <FileOperation v-show="activeIndex === '3'"></FileOperation>
             </el-main>
             <el-footer>Copyright © 2020-present
                 <a target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=F2RgfyAuIyZXZmY5dHh6"
