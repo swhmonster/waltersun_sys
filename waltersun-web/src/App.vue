@@ -6,7 +6,8 @@
                          background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
                     <el-menu-item index="1">时间戳工具</el-menu-item>
                     <el-menu-item index="2">加解密工具</el-menu-item>
-                    <el-menu-item index="3">其他工具下载</el-menu-item>
+                    <el-menu-item index="3">JSON格式化</el-menu-item>
+                    <el-menu-item index="4">其他工具下载</el-menu-item>
                 </el-menu>
             </el-header>
             <el-main>
@@ -17,7 +18,8 @@
                 </el-carousel>
                 <DateTimeOperation v-show="activeIndex === '1'"></DateTimeOperation>
                 <CipherOperation v-show="activeIndex === '2'"></CipherOperation>
-                <FileOperation v-show="activeIndex === '3'"></FileOperation>
+                <JsonFormat v-show="activeIndex === '3'"></JsonFormat>
+                <FileOperation v-show="activeIndex === '4'"></FileOperation>
             </el-main>
             <el-footer>Copyright © 2020-present
                 <a target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=F2RgfyAuIyZXZmY5dHh6"
@@ -34,10 +36,12 @@ import FileOperation from './components/FileOperation.vue'
 import 'element-ui/lib/theme-chalk/index.css'
 import CipherOperation from "@/components/CipherOperation.vue";
 import DateTimeOperation from "@/components/DateTimeOperation.vue";
+import JsonFormat from "@/components/JsonFormat.vue";
 
 export default {
     name: 'App',
     components: {
+        JsonFormat,
         DateTimeOperation,
         CipherOperation,
         FileOperation

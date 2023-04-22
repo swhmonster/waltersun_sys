@@ -1,6 +1,6 @@
 <template>
     <div>
-        <el-form ref="form1" :model="form1" :rules="rules1" label-width="80px" class="demo-form-inline" inline="true"
+        <el-form ref="form1" :model="form1" :rules="rules1" label-width="80px" class="demo-form-inline" :inline="true"
                  label-position="left">
             <div class="tool-doc">
                 <h3>时间戳 -> 日期时间</h3>
@@ -25,7 +25,7 @@
                 <el-input v-model="form1.datetime" placeholder="转换结果" clearable></el-input>
             </el-form-item>
         </el-form>
-        <el-form ref="form2" :model="form2" :rules="rules2" label-width="80px" class="demo-form-inline" inline="true"
+        <el-form ref="form2" :model="form2" :rules="rules2" label-width="80px" class="demo-form-inline" :inline="true"
                  label-position="left">
             <div class="tool-doc">
                 <h3>日期时间 -> 时间戳</h3>
@@ -50,7 +50,7 @@
                 <el-input v-model="form2.timestamp" placeholder="转换结果" clearable></el-input>
             </el-form-item>
         </el-form>
-        <el-form ref="form3" :model="form3" :rules="rules3" label-width="70px" class="demo-form-inline" inline="true"
+        <el-form ref="form3" :model="form3" :rules="rules3" label-width="70px" class="demo-form-inline" :inline="true"
                  label-position="left">
             <div class="tool-doc">
                 <h3>日期格式化</h3>
