@@ -26,10 +26,11 @@
                 <FileOperation v-show="activeIndex === '6'"></FileOperation>
             </el-main>
             <el-footer>Copyright © 2020-present
-                <a target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=F2RgfyAuIyZXZmY5dHh6"
+            <!--去除给我写信-->
+            <!--<a target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=F2RgfyAuIyZXZmY5dHh6"
                    style="text-decoration:none;">
                     <img src="http://rescdn.qqmail.com/zh_CN/htmledition/images/function/qm_open/ico_mailme_02.png" alt="email me"/>
-                </a>
+                </a>-->
             </el-footer>
         </el-container>
     </div>
