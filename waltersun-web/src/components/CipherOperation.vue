@@ -1,10 +1,13 @@
 <template>
     <el-form ref="form" :model="form" :rules="rules" label-width="120px">
-        <el-form-item label="加解密方式">
+        <div class="tool-doc">
+            <h3>加密/解密</h3>
+        </div>
+        <el-form-item label="加解密方式" style="text-align:left">
             <el-radio v-model="form.type" label="DES">DES</el-radio>
             <el-radio v-model="form.type" label="AES">AES</el-radio>
         </el-form-item>
-        <el-form-item label="加解密密钥" prop="checkSecretKey">
+        <el-form-item label="加解密密钥" prop="checkSecretKey" style="width: 600px">
             <el-input placeholder="请输入密钥" v-model="form.key" show-password clearable></el-input>
         </el-form-item>
         <el-form-item label="加解密内容">

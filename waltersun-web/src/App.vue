@@ -7,8 +7,9 @@
                     <el-menu-item index="1">时间戳工具</el-menu-item>
                     <el-menu-item index="2">加解密工具</el-menu-item>
                     <el-menu-item index="3">JSON格式化</el-menu-item>
-                    <el-menu-item index="4">CDN检测工具</el-menu-item>
-                    <el-menu-item index="5">其他工具下载</el-menu-item>
+                    <el-menu-item index="4">CDN工具</el-menu-item>
+                    <el-menu-item index="5">UUID工具</el-menu-item>
+                    <el-menu-item index="6">其他工具下载</el-menu-item>
                 </el-menu>
             </el-header>
             <el-main>
@@ -21,7 +22,8 @@
                 <CipherOperation v-show="activeIndex === '2'"></CipherOperation>
                 <JsonFormat v-show="activeIndex === '3'"></JsonFormat>
                 <CDNdetect v-show="activeIndex === '4'"></CDNdetect>
-                <FileOperation v-show="activeIndex === '5'"></FileOperation>
+                <UuidHelper v-show="activeIndex === '5'"></UuidHelper>
+                <FileOperation v-show="activeIndex === '6'"></FileOperation>
             </el-main>
             <el-footer>Copyright © 2020-present
                 <a target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=F2RgfyAuIyZXZmY5dHh6"
@@ -40,10 +42,12 @@ import CipherOperation from "@/components/CipherOperation.vue";
 import DateTimeOperation from "@/components/DateTimeOperation.vue";
 import JsonFormat from "@/components/JsonFormat.vue";
 import CDNdetect from "@/components/CDNdetect.vue";
+import UuidHelper from "@/components/UuidHelper.vue";
 
 export default {
     name: 'App',
     components: {
+        UuidHelper,
         CDNdetect,
         JsonFormat,
         DateTimeOperation,
