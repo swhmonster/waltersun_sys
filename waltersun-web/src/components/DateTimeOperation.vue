@@ -21,7 +21,7 @@
                 <h3>时间戳 -> 日期时间</h3>
             </div>
             <el-form-item prop="checkEmpty1">
-                <el-input v-model="form1.timestamp" placeholder="1681982671506" clearable></el-input>
+                <el-input v-model="form1.timestamp" placeholder="1681982671506" clearable style="width: 230px"></el-input>
             </el-form-item>
             <el-form-item>
                 <el-select v-model="form1.unit" placeholder="毫秒(ms)">
@@ -37,7 +37,7 @@
                 </el-select>
             </el-form-item>
             <el-form-item>
-                <el-input v-model="form1.datetime" placeholder="转换结果" clearable></el-input>
+                <el-input v-model="form1.datetime" placeholder="转换结果" clearable style="width: 230px"></el-input>
             </el-form-item>
         </el-form>
         <el-form ref="form2" :model="form2" :rules="rules2" label-width="80px" class="demo-form-inline" :inline="true"
@@ -46,7 +46,7 @@
                 <h3>日期时间 -> 时间戳</h3>
             </div>
             <el-form-item prop="checkEmpty2">
-                <el-input v-model="form2.datetime" placeholder="1970-1-1 00:00:00" clearable></el-input>
+                <el-input v-model="form2.datetime" placeholder="1970-1-1 00:00:00" clearable style="width: 230px"></el-input>
             </el-form-item>
             <el-form-item lable="时区选择">
                 <el-select v-model="form2.zone" placeholder="时区:北京时间">
@@ -62,7 +62,7 @@
                 </el-select>
             </el-form-item>
             <el-form-item>
-                <el-input v-model="form2.timestamp" placeholder="转换结果" clearable></el-input>
+                <el-input v-model="form2.timestamp" placeholder="转换结果" clearable style="width: 230px"></el-input>
             </el-form-item>
         </el-form>
         <el-form ref="form3" :model="form3" :rules="rules3" label-width="70px" class="demo-form-inline" :inline="true"
