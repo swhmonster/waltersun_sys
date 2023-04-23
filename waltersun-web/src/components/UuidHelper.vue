@@ -5,16 +5,16 @@
             <h3>生成UUID</h3>
         </div>
         <el-form-item>
-            <el-input v-model="form.uuid1" style="width: 350px;"></el-input>
+            <el-input v-model="form.uuid1" style="width: 350px;" readonly></el-input>
         </el-form-item>
         <el-form-item>
-            <el-input v-model="form.uuid2" style="width: 350px;"></el-input>
+            <el-input v-model="form.uuid2" style="width: 350px;" readonly></el-input>
         </el-form-item>
         <el-form-item>
-            <el-input v-model="form.uuid3" style="width: 350px;"></el-input>
+            <el-input v-model="form.uuid3" style="width: 350px;" readonly></el-input>
         </el-form-item>
         <el-form-item>
-            <el-input v-model="form.uuid4" style="width: 350px;"></el-input>
+            <el-input v-model="form.uuid4" style="width: 350px;" readonly></el-input>
         </el-form-item>
         <el-form-item>
             <el-button type="primary" @click="generate">生成</el-button>

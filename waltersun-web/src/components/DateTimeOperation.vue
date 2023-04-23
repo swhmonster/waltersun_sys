@@ -6,13 +6,13 @@
         <el-form ref="form" :model="form" label-width="80px" class="demo-form-inline" :inline="true"
                  label-position="right">
             <el-form-item label="时间">
-                <el-input v-model="form.dt" style="width: 170px"></el-input>
+                <el-input v-model="form.dt" style="width: 170px" readonly></el-input>
             </el-form-item>
             <el-form-item label="时间戳(s)">
-                <el-input v-model="form.ts" style="width: 170px"></el-input>
+                <el-input v-model="form.ts" style="width: 170px" readonly></el-input>
             </el-form-item>
             <el-form-item label="时间戳(ms)">
-                <el-input v-model="form.tms" style="width: 170px"></el-input>
+                <el-input v-model="form.tms" style="width: 170px" readonly></el-input>
             </el-form-item>
         </el-form>
         <el-form ref="form1" :model="form1" :rules="rules1" label-width="80px" class="demo-form-inline" :inline="true"
