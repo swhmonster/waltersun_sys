@@ -1,6 +1,9 @@
 <template>
     <el-form ref="form" :model="form" label-width="0">
         <el-form-item>
+            <div class="tool-doc">
+                <h3>JSON格式化</h3>
+            </div>
             <el-input
                     type="textarea"
                     :autosize="{ minRows: 15, maxRows: 1000}"

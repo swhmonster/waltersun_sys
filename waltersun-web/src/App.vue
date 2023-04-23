@@ -9,7 +9,8 @@
                     <el-menu-item index="3">JSON格式化</el-menu-item>
                     <el-menu-item index="4">CDN工具</el-menu-item>
                     <el-menu-item index="5">UUID工具</el-menu-item>
-                    <el-menu-item index="6">其他工具下载</el-menu-item>
+                    <el-menu-item index="6">URL工具</el-menu-item>
+                    <el-menu-item index="7">其他工具下载</el-menu-item>
                 </el-menu>
             </el-header>
             <el-main>
@@ -23,7 +24,8 @@
                 <JsonFormat v-show="activeIndex === '3'"></JsonFormat>
                 <CDNdetect v-show="activeIndex === '4'"></CDNdetect>
                 <UuidHelper v-show="activeIndex === '5'"></UuidHelper>
-                <FileOperation v-show="activeIndex === '6'"></FileOperation>
+                <URLUtils v-show="activeIndex === '6'"></URLUtils>
+                <FileOperation v-show="activeIndex === '7'"></FileOperation>
             </el-main>
             <el-footer>Copyright © 2020-present
             <!--去除给我写信-->
@@ -44,10 +46,12 @@ import DateTimeOperation from "@/components/DateTimeOperation.vue";
 import JsonFormat from "@/components/JsonFormat.vue";
 import CDNdetect from "@/components/CDNdetect.vue";
 import UuidHelper from "@/components/UuidHelper.vue";
+import URLUtils from "@/components/URLUtils.vue";
 
 export default {
     name: 'App',
     components: {
+        URLUtils,
         UuidHelper,
         CDNdetect,
         JsonFormat,
