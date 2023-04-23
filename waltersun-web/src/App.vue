@@ -69,7 +69,7 @@ export default {
         const _hmt = _hmt || [];
         (function () {
             var hm = document.createElement("script");
-            hm.src = "https://hm.baidu.com/hm.js?dc5933ca15f693dcf17a8c1cc0001141";
+            hm.src = "https://hm.baidu.com/hm.js?37ea8aa769f87ef76eeaa7d7844cb451";
             var s = document.getElementsByTagName("script")[0];
             s.parentNode.insertBefore(hm, s);
         })();
