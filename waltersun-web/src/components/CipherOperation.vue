@@ -78,8 +78,17 @@ export default {
             if (validateFlag) {
                 this.$axios.post('/api/cipher/encrypt', this.form).then(res => {
                     this.form.resStr = res.data;
+                    this.$notify({
+                        title: '加密成功',
+                        message: '请牢记密钥！',
+                        type: 'success'
+                    });
                 }).catch(err => {
-                    this.$message.error('加密异常');
+                    this.$notify({
+                        title: '发生异常',
+                        message: '加密异常，请检查！',
+                        type: 'warning'
+                    });
                     console.log(err);
                 }).finally(() => {
                 })
@@ -100,8 +109,17 @@ export default {
             if (validateFlag) {
                 this.$axios.post('/api/cipher/dncrypt', this.form).then(res => {
                     this.form.resStr = res.data;
+                    this.$notify({
+                        title: '解密成功',
+                        message: '请牢记密钥！',
+                        type: 'success'
+                    });
                 }).catch(err => {
-                    this.$message.error('解密异常');
+                    this.$notify({
+                        title: '发生异常',
+                        message: '加密异常，请检查！',
+                        type: 'warning'
+                    });
                     console.log(err);
                 }).finally(() => {
                 })

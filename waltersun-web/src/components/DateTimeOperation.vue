@@ -313,8 +313,17 @@ export default {
             if (validateFlag) {
                 this.$axios.get('/api/utils/datetime?unit=' + this.form1.unit + '&timestamp=' + this.form1.timestamp + '&zone=' + this.form1.zone, {}).then(res => {
                     this.form1.datetime = res.data;
+                    this.$notify({
+                        title: 'success',
+                        message: '转换成功！',
+                        type: 'success'
+                    });
                 }).catch(err => {
-                    this.$message.error('转换异常，请检查入参！');
+                    this.$notify({
+                        title: '转换异常',
+                        message: '请检查输入和目标结果',
+                        type: 'warning'
+                    });
                     console.log(err);
                 }).finally(() => {
                 })
@@ -335,8 +344,17 @@ export default {
             if (validateFlag) {
                 this.$axios.get('/api/utils/timestamp?unit=' + this.form2.unit + '&dateTime=' + this.form2.datetime + '&zone=' + this.form2.zone, {}).then(res => {
                     this.form2.timestamp = res.data;
+                    this.$notify({
+                        title: 'success',
+                        message: '转换成功！',
+                        type: 'success'
+                    });
                 }).catch(err => {
-                    this.$message.error('转换异常，请检查入参！');
+                    this.$notify({
+                        title: '转换异常',
+                        message: '请检查输入和目标结果',
+                        type: 'warning'
+                    });
                     console.log(err);
                 }).finally(() => {
                 })
@@ -357,8 +375,17 @@ export default {
             if (validateFlag) {
                 this.$axios.get('/api/utils/format?dateTime=' + this.form3.datetime + '&parttern=' + this.form3.pattern, {}).then(res => {
                     this.form3.result = res.data;
+                    this.$notify({
+                        title: 'success',
+                        message: '格式化成功！',
+                        type: 'success'
+                    });
                 }).catch(err => {
-                    this.$message.error('格式化异常，请检查入参！');
+                    this.$notify({
+                        title: '格式化异常',
+                        message: '请检查输入和目标结果，部分格式的转化存在精度问题，会导致失败！',
+                        type: 'warning'
+                    });
                     console.log(err);
                 }).finally(() => {
                 })

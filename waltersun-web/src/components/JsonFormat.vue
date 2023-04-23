@@ -30,16 +30,34 @@ export default {
         formatToJson() {
             try {
                 this.form.jsonStr = JSON.stringify(JSON.parse(this.form.jsonStr), null, '\t');
+                this.$notify({
+                    title: 'success',
+                    message: 'JSON格式化成功！',
+                    type: 'success'
+                });
             } catch (e) {
-                this.$message.error('JSON格式化异常，请检查！');
+                this.$notify({
+                    title: '发生异常',
+                    message: 'JSON格式化异常，请检查！',
+                    type: 'warning'
+                });
                 console.log(e);
             }
         },
-        formatToString(){
+        formatToString() {
             try {
                 this.form.jsonStr = JSON.stringify(JSON.parse(this.form.jsonStr), null, null);
+                this.$notify({
+                    title: 'success',
+                    message: 'JSON格式化成功！',
+                    type: 'success'
+                });
             } catch (e) {
-                this.$message.error('JSON格式化异常，请检查！');
+                this.$notify({
+                    title: '发生异常',
+                    message: 'JSON格式化异常，请检查！',
+                    type: 'warning'
+                });
                 console.log(e);
             }
         }

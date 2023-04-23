@@ -43,6 +43,11 @@ export default {
             this.form.uuid2 = newUuid.toLowerCase().replace(/[-]/g, '');
             this.form.uuid3 = newUuid.toUpperCase();
             this.form.uuid4 = newUuid.toUpperCase().replace(/[-]/g, '');
+            this.$notify({
+                title: 'success',
+                message: '请选择需要的uuid',
+                type: 'success'
+            });
         }
     }
 }
