@@ -1,5 +1,20 @@
 <template>
     <div>
+        <div class="tool-doc">
+            <h3>当前时间 和 时间戳</h3>
+        </div>
+        <el-form ref="form" :model="form" label-width="80px" class="demo-form-inline" :inline="true"
+                 label-position="right">
+            <el-form-item label="时间">
+                <el-input v-model="form.dt" style="width: 170px"></el-input>
+            </el-form-item>
+            <el-form-item label="时间戳(s)">
+                <el-input v-model="form.ts" style="width: 170px"></el-input>
+            </el-form-item>
+            <el-form-item label="时间戳(ms)">
+                <el-input v-model="form.tms" style="width: 170px"></el-input>
+            </el-form-item>
+        </el-form>
         <el-form ref="form1" :model="form1" :rules="rules1" label-width="80px" class="demo-form-inline" :inline="true"
                  label-position="left">
             <div class="tool-doc">
@@ -129,6 +144,11 @@ export default {
                     {validator: checkEmpty3, trigger: 'blur'}
                 ]
             },
+            form: {
+                dt: '',
+                ts: '',
+                tms: ''
+            },
             form1: {
                 timestamp: '',
                 datetime: '',
@@ -254,7 +274,30 @@ export default {
             ]
         };
     },
+    mounted() {
+        this.currentTime();
+    },
+    beforeDestroy() {
+        if (this.formatDate) {
+            clearInterval(this.formatDate);
+        }
+    },
     methods: {
+        currentTime() {
+            setInterval(this.formatDate, 1000)
+        },
+        formatDate() {
+            let time = new Date()
+            let year = time.getFullYear()
+            const month = (time.getMonth() + 1).toString().padStart(2, '0')
+            const date = (time.getDate()).toString().padStart(2, '0')
+            const hours = (time.getHours()).toString().padStart(2, '0')
+            const minute = (time.getMinutes()).toString().padStart(2, '0')
+            const second = (time.getSeconds()).toString().padStart(2, '0')
+            this.form.dt = year + '-' + month + '-' + date + ' ' + hours + ':' + minute + ':' + second;
+            this.form.ts = parseInt(new Date().getTime() / 1000) + ''
+            this.form.tms = parseInt(new Date().getTime()) + ''
+        },
         onSubmit1(formName) {
             let validateFlag = true;
             this.$refs[formName].validate((valid) => {
