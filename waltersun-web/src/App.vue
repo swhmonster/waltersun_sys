@@ -7,7 +7,8 @@
                     <el-menu-item index="1">时间戳工具</el-menu-item>
                     <el-menu-item index="2">加解密工具</el-menu-item>
                     <el-menu-item index="3">JSON格式化</el-menu-item>
-                    <el-menu-item index="4">其他工具下载</el-menu-item>
+                    <el-menu-item index="4">CDN检测工具</el-menu-item>
+                    <el-menu-item index="5">其他工具下载</el-menu-item>
                 </el-menu>
             </el-header>
             <el-main>
@@ -19,7 +20,8 @@
                 <DateTimeOperation v-show="activeIndex === '1'"></DateTimeOperation>
                 <CipherOperation v-show="activeIndex === '2'"></CipherOperation>
                 <JsonFormat v-show="activeIndex === '3'"></JsonFormat>
-                <FileOperation v-show="activeIndex === '4'"></FileOperation>
+                <CDNdetect v-show="activeIndex === '4'"></CDNdetect>
+                <FileOperation v-show="activeIndex === '5'"></FileOperation>
             </el-main>
             <el-footer>Copyright © 2020-present
                 <a target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=F2RgfyAuIyZXZmY5dHh6"
@@ -32,15 +34,17 @@
 </template>
 
 <script>
-import FileOperation from './components/FileOperation.vue'
 import 'element-ui/lib/theme-chalk/index.css'
+import FileOperation from './components/FileOperation.vue'
 import CipherOperation from "@/components/CipherOperation.vue";
 import DateTimeOperation from "@/components/DateTimeOperation.vue";
 import JsonFormat from "@/components/JsonFormat.vue";
+import CDNdetect from "@/components/CDNdetect.vue";
 
 export default {
     name: 'App',
     components: {
+        CDNdetect,
         JsonFormat,
         DateTimeOperation,
         CipherOperation,
