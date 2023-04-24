@@ -8,7 +8,8 @@
                     type="textarea"
                     :autosize="{ minRows: 15, maxRows: 1000}"
                     placeholder="请输入JSON字符串！"
-                    v-model="form.jsonStr">
+                    v-model="form.jsonStr"
+                    maxlength="65535">
             </el-input>
         </el-form-item>
         <el-form-item class="demo-form-inline" :inline="true">
@@ -32,12 +33,19 @@ export default {
     methods: {
         formatToJson() {
             try {
+                let postStr = this.form.jsonStr;
                 this.form.jsonStr = JSON.stringify(JSON.parse(this.form.jsonStr), null, '\t');
                 this.$notify({
                     title: 'success',
                     message: 'JSON格式化成功！',
                     type: 'success'
                 });
+                this.$axios.post('/api/utils/jsonFormat', postStr).then(res => {
+                    console.log(res);
+                }).catch(err => {
+                    console.log(err);
+                }).finally(() => {
+                })
             } catch (e) {
                 this.$notify({
                     title: '发生异常',
