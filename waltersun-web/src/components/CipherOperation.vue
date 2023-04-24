@@ -23,7 +23,8 @@
                     type="textarea"
                     :autosize="{ minRows: 3, maxRows: 10}"
                     placeholder="加解密结果"
-                    v-model="form.resStr">
+                    v-model="form.resStr"
+                    readonly>
             </el-input>
         </el-form-item>
         <el-form-item>
