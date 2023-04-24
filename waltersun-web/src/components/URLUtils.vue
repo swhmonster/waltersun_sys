@@ -9,7 +9,8 @@
                     type="textarea"
                     :autosize="{ minRows: 10, maxRows: 20}"
                     placeholder="请输入URL..."
-                    v-model="form.url">
+                    v-model="form.url"
+                    maxlength="65535">
             </el-input>
         </el-form-item>
         <el-form-item class="demo-form-inline" :inline="true">

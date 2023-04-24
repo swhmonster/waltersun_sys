@@ -15,7 +15,8 @@
                     type="textarea"
                     :autosize="{ minRows: 3, maxRows: 10}"
                     placeholder="请输入加解密内容"
-                    v-model="form.inputStr">
+                    v-model="form.inputStr"
+                    maxlength="65535">
             </el-input>
         </el-form-item>
         <el-form-item label="加解密结果">
