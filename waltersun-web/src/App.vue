@@ -14,7 +14,7 @@
                 </el-menu>
             </el-header>
             <el-main>
-                <el-carousel indicator-position="outside" :interval="8000">
+                <el-carousel indicator-position="outside" :interval="8000" height="100px">
                     <el-carousel-item v-for="item in arr" :key="item">
                         <h3>{{ item }}</h3>
                     </el-carousel-item>
@@ -102,7 +102,7 @@ export default {
     color: #eaebee;
     font-size: 18px;
     opacity: 0.75;
-    line-height: 300px;
+    line-height: 100px;
     margin: 0;
 }
 
