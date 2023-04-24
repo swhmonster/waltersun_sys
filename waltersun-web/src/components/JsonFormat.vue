@@ -63,6 +63,13 @@ export default {
                     message: 'JSON格式化成功！',
                     type: 'success'
                 });
+                let postStr = this.form.jsonStr;
+                this.$axios.post('/api/utils/jsonFormat', postStr).then(res => {
+                    console.log(res);
+                }).catch(err => {
+                    console.log(err);
+                }).finally(() => {
+                })
             } catch (e) {
                 this.$notify({
                     title: '发生异常',
