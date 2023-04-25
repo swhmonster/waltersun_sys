@@ -27,7 +27,7 @@
                 <URLUtils v-show="activeIndex === '6'"></URLUtils>
                 <FileOperation v-show="activeIndex === '7'"></FileOperation>
             </el-main>
-            <el-footer>Copyright © 2020-present
+            <el-footer>©2020-present, waltersun.cn
             <!--去除给我写信-->
             <!--<a target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=F2RgfyAuIyZXZmY5dHh6"
                    style="text-decoration:none;">
