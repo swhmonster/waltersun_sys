@@ -27,7 +27,11 @@
                 <URLUtils v-show="activeIndex === '6'"></URLUtils>
                 <FileOperation v-show="activeIndex === '7'"></FileOperation>
             </el-main>
-            <el-footer>©2020-present, waltersun.cn
+            <el-footer>
+                <el-link href="https://beian.miit.gov.cn/" target="_blank">苏ICP备2023008337号-1</el-link>
+                <img src="./assets/beian.png" alt="beian icon"/>
+                <el-link href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=32010602010775" target="_blank">苏公网安备32010602010775号</el-link>
+                ©2020-present, waltersun.cn
             <!--去除给我写信-->
             <!--<a target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=F2RgfyAuIyZXZmY5dHh6"
                    style="text-decoration:none;">
