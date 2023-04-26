@@ -2,9 +2,7 @@
     <div id="app">
         <el-container>
             <el-header>
-                <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect"
-                         background-color="#545c64" text-color="#fff" active-text-color="#ffd04b"
-                         style="font-weight: bold;font-family: 'Alibaba PuHuiTi',emoji">
+                <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
                     <el-menu-item index="1">时间戳工具</el-menu-item>
                     <el-menu-item index="2">加解密工具</el-menu-item>
                     <el-menu-item index="3">JSON格式化</el-menu-item>
@@ -14,9 +12,10 @@
                     <el-menu-item index="7">其他工具下载</el-menu-item>
                 </el-menu>
             </el-header>
-            <el-main>
-                <el-carousel indicator-position="outside" :interval="8000" height="100px">
-                    <el-carousel-item v-for="item in arr" :key="item" style="font-family: 'Alibaba PuHuiTi',serif;text-align: center">
+            <el-main style="">
+                <el-carousel indicator-position="outside" :interval="8000" height="90px" style="color: #2c3e50">
+                    <el-carousel-item v-for="item in arr" :key="item"
+                                      style="color: #2c3e50; font-size: 18px; font-family: 'Helvetica Neue',cursive;text-align: center;background-color: azure;box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04)">
                         <h3>{{ item }}</h3>
                     </el-carousel-item>
                 </el-carousel>
@@ -97,14 +96,14 @@ export default {
 
 <style>
 #app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    color: #2c3e50;
-    margin-top: 60px;
+    /*font-family: Avenir, Helvetica, Arial, sans-serif;*/
+    /*-webkit-font-smoothing: antialiased;*/
+    /*-moz-osx-font-smoothing: grayscale;*/
+    /*color: #2c3e50;*/
+    /*margin-top: 60px;*/
 }
 
-.el-carousel__item h3 {
+/*.el-carousel__item h3 {
     color: #eaebee;
     font-size: 18px;
     opacity: 0.75;
@@ -118,5 +117,5 @@ export default {
 
 .el-carousel__item:nth-child(2n+1) {
     background-color: #606266;
-}
+}*/
 </style>
