@@ -23,11 +23,14 @@
                                 </el-input>
                             </el-form-item>
                         </el-main>
-                        <el-main style="width: 50%">
+                        <el-main style="width: 50%; overflow: hidden">
                             <json-viewer :value="item.jsonData"
                                          :expand-depth=5
                                          copyable
-                                         expanded sort style="height: 100%"></json-viewer>
+                                         expanded
+                                         sort
+                                         show-array-index
+                                         style="height: 100%"></json-viewer>
                             <div style="margin-bottom: 22px"></div>
                         </el-main>
                     </el-container>
