@@ -3,26 +3,26 @@
         <div class="tool-doc">
             <h3>JSON格式化</h3>
         </div>
-        <el-form-item>
-            <el-radio-group v-model="ratio1">
-                <el-radio-button label="Code"></el-radio-button>
-                <el-radio-button label="Tree"></el-radio-button>
-            </el-radio-group>
-        </el-form-item>
-        <json-viewer :value="jsonData"
-                     :expand-depth=5
-                     copyable
-                     boxed expanded sort v-show="ratio1==='Tree'"></json-viewer>
-        <div style="margin-bottom: 22px"></div>
-        <el-form-item class="demo-form-inline" :inline="true" v-show="ratio1==='Code'">
-            <el-input
-                    type="textarea"
-                    :autosize="{ minRows: 15, maxRows: 1000}"
-                    placeholder="请输入JSON字符串！"
-                    v-model="form.jsonStr"
-                    maxlength="65535">
-            </el-input>
-        </el-form-item>
+        <el-container>
+            <el-main style="width: 50%">
+                <el-form-item class="demo-form-inline" :inline="true">
+                    <el-input
+                            type="textarea"
+                            :autosize="{ minRows: 15, maxRows: 1000}"
+                            placeholder="请输入JSON字符串！"
+                            v-model="form.jsonStr"
+                            maxlength="65535">
+                    </el-input>
+                </el-form-item>
+            </el-main>
+            <el-main style="width: 50%">
+                <json-viewer :value="jsonData"
+                             :expand-depth=5
+                             copyable
+                             expanded sort style="height: 100%"></json-viewer>
+                <div style="margin-bottom: 22px"></div>
+            </el-main>
+        </el-container>
         <el-form-item class="demo-form-inline" :inline="true" style="text-align: center;">
             <el-button type="primary" @click="formatToJson">转JSON</el-button>
             <el-button type="primary" @click="formatToString">转String</el-button>
@@ -38,7 +38,6 @@ export default {
     name: "JsonFormat",
     data() {
         return {
-            ratio1: 'Code',
             jsonData: {},
             form: {
                 jsonStr: ''
@@ -102,5 +101,7 @@ export default {
 </script>
 
 <style scoped>
-
+.tool-doc{
+    text-align: center;
+}
 </style>
