@@ -1,33 +1,44 @@
 <template>
-    <el-form ref="form" :model="form" label-width="0">
+    <el-main>
         <div class="tool-doc">
             <h3>JSON格式化</h3>
         </div>
-        <el-container>
-            <el-main style="width: 50%">
-                <el-form-item class="demo-form-inline" :inline="true">
-                    <el-input
-                            type="textarea"
-                            :autosize="{ minRows: 15, maxRows: 1000}"
-                            placeholder="请输入JSON字符串！"
-                            v-model="form.jsonStr"
-                            maxlength="65535">
-                    </el-input>
-                </el-form-item>
-            </el-main>
-            <el-main style="width: 50%">
-                <json-viewer :value="jsonData"
-                             :expand-depth=5
-                             copyable
-                             expanded sort style="height: 100%"></json-viewer>
-                <div style="margin-bottom: 22px"></div>
-            </el-main>
-        </el-container>
-        <el-form-item class="demo-form-inline" :inline="true" style="text-align: center;">
-            <el-button type="primary" @click="formatToJson">转JSON</el-button>
-            <el-button type="primary" @click="formatToString">转String</el-button>
-        </el-form-item>
-    </el-form>
+        <el-tabs v-model="editableTabsValue" type="card" editable @edit="handleTabsEdit">
+            <el-tab-pane
+                    :key="item.name"
+                    v-for="(item) in editableTabs"
+                    :label="item.title"
+                    :name="item.name"
+            >
+                <el-form ref="form" :model="item.form" label-width="0">
+                    <el-container>
+                        <el-main style="width: 50%">
+                            <el-form-item class="demo-form-inline" :inline="true">
+                                <el-input
+                                        type="textarea"
+                                        :autosize="{ minRows: 15, maxRows: 1000}"
+                                        placeholder="请输入JSON字符串！"
+                                        v-model="item.form.jsonStr"
+                                        maxlength="65535">
+                                </el-input>
+                            </el-form-item>
+                        </el-main>
+                        <el-main style="width: 50%">
+                            <json-viewer :value="item.jsonData"
+                                         :expand-depth=5
+                                         copyable
+                                         expanded sort style="height: 100%"></json-viewer>
+                            <div style="margin-bottom: 22px"></div>
+                        </el-main>
+                    </el-container>
+                    <el-form-item class="demo-form-inline" :inline="true" style="text-align: center;">
+                        <el-button type="primary" @click="formatToJson(item)">转JSON</el-button>
+                        <el-button type="primary" @click="formatToString(item)">转String</el-button>
+                    </el-form-item>
+                </el-form>
+            </el-tab-pane>
+        </el-tabs>
+    </el-main>
 </template>
 
 <script>
@@ -41,20 +52,41 @@ export default {
             jsonData: {},
             form: {
                 jsonStr: ''
-            }
+            },
+            editableTabsValue: '1',
+            editableTabs: [{
+                title: 'New Tab 1',
+                name: '1',
+                jsonData: {},
+                form: {
+                    jsonStr: ''
+                }
+            }, {
+                title: 'New Tab 2',
+                name: '2',
+                jsonData: {},
+                form: {
+                    jsonStr: ''
+                }
+            }],
+            tabIndex: 2
         }
     },
     methods: {
-        formatToJson() {
+        formatToJson(item) {
             try {
-                let postStr = this.form.jsonStr;
-                let jsonRes = JSON.parse(this.form.jsonStr);
-                this.jsonData = jsonRes;
-                this.form.jsonStr = JSON.stringify(jsonRes, null, '\t');
+                let postStr = item.form.jsonStr;
+                let jsonRes = JSON.parse(item.form.jsonStr);
+                item.jsonData = jsonRes;
+                item.form.jsonStr = JSON.stringify(jsonRes, null, '\t');
                 this.$notify({
                     title: 'success',
                     message: 'JSON格式化成功！',
-                    type: 'success'
+                    type: 'success',
+                    jsonData: {},
+                    form: {
+                        jsonStr: ''
+                    }
                 });
                 this.$axios.post('/api/utils/jsonFormat', postStr).then(res => {
                     console.log(res);
@@ -71,16 +103,16 @@ export default {
                 console.log(e);
             }
         },
-        formatToString() {
+        formatToString(item) {
             try {
-                this.form.jsonStr = JSON.stringify(JSON.parse(this.form.jsonStr), null, null);
-                this.jsonData = this.form.jsonStr;
+                item.form.jsonStr = JSON.stringify(JSON.parse(item.form.jsonStr), null, null);
+                item.jsonData = item.form.jsonStr;
                 this.$notify({
                     title: 'success',
                     message: 'JSON格式化成功！',
                     type: 'success'
                 });
-                let postStr = this.form.jsonStr;
+                let postStr = item.form.jsonStr;
                 this.$axios.post('/api/utils/jsonFormat', postStr).then(res => {
                     console.log(res);
                 }).catch(err => {
@@ -95,13 +127,45 @@ export default {
                 });
                 console.log(e);
             }
+        },
+        handleTabsEdit(targetName, action) {
+            if (action === 'add') {
+                let newTabName = ++this.tabIndex + '';
+                this.editableTabs.push({
+                    title: 'New Tab ' + newTabName,
+                    name: newTabName,
+                    content: 'New Tab content',
+                    jsonData: {},
+                    form: {
+                        jsonStr: ''
+                    }
+                });
+                this.editableTabsValue = newTabName;
+            }
+            if (action === 'remove') {
+                let tabs = this.editableTabs;
+                let activeName = this.editableTabsValue;
+                if (activeName === targetName) {
+                    tabs.forEach((tab, index) => {
+                        if (tab.name === targetName) {
+                            let nextTab = tabs[index + 1] || tabs[index - 1];
+                            if (nextTab) {
+                                activeName = nextTab.name;
+                            }
+                        }
+                    });
+                }
+
+                this.editableTabsValue = activeName;
+                this.editableTabs = tabs.filter(tab => tab.name !== targetName);
+            }
         }
     }
 }
 </script>
 
 <style scoped>
-.tool-doc{
+.tool-doc {
     text-align: center;
 }
 </style>
