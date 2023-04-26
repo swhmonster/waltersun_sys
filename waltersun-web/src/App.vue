@@ -3,7 +3,8 @@
         <el-container>
             <el-header>
                 <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect"
-                         background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
+                         background-color="#545c64" text-color="#fff" active-text-color="#ffd04b"
+                         style="font-weight: bold;font-family: 'Alibaba PuHuiTi',emoji">
                     <el-menu-item index="1">时间戳工具</el-menu-item>
                     <el-menu-item index="2">加解密工具</el-menu-item>
                     <el-menu-item index="3">JSON格式化</el-menu-item>
@@ -15,7 +16,7 @@
             </el-header>
             <el-main>
                 <el-carousel indicator-position="outside" :interval="8000" height="100px">
-                    <el-carousel-item v-for="item in arr" :key="item">
+                    <el-carousel-item v-for="item in arr" :key="item" style="font-family: 'Alibaba PuHuiTi',serif">
                         <h3>{{ item }}</h3>
                     </el-carousel-item>
                 </el-carousel>
@@ -30,13 +31,15 @@
             <el-footer style="text-align: center;">
                 <el-link href="https://beian.miit.gov.cn/" target="_blank">苏ICP备2023008337号-1</el-link>
                 <img src="./assets/beian.png" alt="beian icon"/>
-                <el-link href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=32010602010775" target="_blank">苏公网安备32010602010775号</el-link>
+                <el-link href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=32010602010775"
+                         target="_blank">苏公网安备32010602010775号
+                </el-link>
                 ©2020-present, waltersun.cn
-            <!--去除给我写信-->
-            <!--<a target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=F2RgfyAuIyZXZmY5dHh6"
-                   style="text-decoration:none;">
-                    <img src="http://rescdn.qqmail.com/zh_CN/htmledition/images/function/qm_open/ico_mailme_02.png" alt="email me"/>
-                </a>-->
+                <!--去除给我写信-->
+                <!--<a target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=F2RgfyAuIyZXZmY5dHh6"
+                       style="text-decoration:none;">
+                        <img src="http://rescdn.qqmail.com/zh_CN/htmledition/images/function/qm_open/ico_mailme_02.png" alt="email me"/>
+                    </a>-->
             </el-footer>
         </el-container>
     </div>
