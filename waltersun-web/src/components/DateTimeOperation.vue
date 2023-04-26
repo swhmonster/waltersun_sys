@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div style="text-align: center;">
         <div class="tool-doc">
             <h3>当前时间 和 时间戳</h3>
         </div>

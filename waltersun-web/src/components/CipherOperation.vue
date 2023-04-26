@@ -1,5 +1,5 @@
 <template>
-    <el-form ref="form" :model="form" :rules="rules" label-width="120px">
+    <el-form ref="form" :model="form" :rules="rules" label-width="120px" style="text-align: center;">
         <div class="tool-doc">
             <h3>加密/解密</h3>
         </div>

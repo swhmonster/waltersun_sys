@@ -13,7 +13,8 @@
     "core-js": "^3.6.5",
     "element-ui": "^2.15.2",
     "uuid": "^9.0.0",
-    "vue": "^2.6.11"
+    "vue": "^2.6.11",
+    "vue-json-viewer": "^2.2.22"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",

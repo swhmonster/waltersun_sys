@@ -1,6 +1,6 @@
 <template>
     <el-form ref="form" :model="form" label-width="0"
-             label-position="right">
+             label-position="right" style="text-align: center;">
         <div class="tool-doc">
             <h3>生成UUID</h3>
         </div>

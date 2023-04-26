@@ -1,6 +1,6 @@
 <template>
     <el-form ref="form" :model="form" label-width="0"
-             label-position="right">
+             label-position="right" style="text-align: center;">
         <div class="tool-doc">
             <h3>URL Encode编码/Decode解码</h3>
         </div>

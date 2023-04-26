@@ -1,9 +1,20 @@
 <template>
     <el-form ref="form" :model="form" label-width="0">
+        <div class="tool-doc">
+            <h3>JSON格式化</h3>
+        </div>
         <el-form-item>
-            <div class="tool-doc">
-                <h3>JSON格式化</h3>
-            </div>
+            <el-radio-group v-model="ratio1">
+                <el-radio-button label="Code"></el-radio-button>
+                <el-radio-button label="Tree"></el-radio-button>
+            </el-radio-group>
+        </el-form-item>
+        <json-viewer :value="jsonData"
+                     :expand-depth=5
+                     copyable
+                     boxed expanded sort v-show="ratio1==='Tree'"></json-viewer>
+        <div style="margin-bottom: 22px"></div>
+        <el-form-item class="demo-form-inline" :inline="true" v-show="ratio1==='Code'">
             <el-input
                     type="textarea"
                     :autosize="{ minRows: 15, maxRows: 1000}"
@@ -12,7 +23,7 @@
                     maxlength="65535">
             </el-input>
         </el-form-item>
-        <el-form-item class="demo-form-inline" :inline="true">
+        <el-form-item class="demo-form-inline" :inline="true" style="text-align: center;">
             <el-button type="primary" @click="formatToJson">转JSON</el-button>
             <el-button type="primary" @click="formatToString">转String</el-button>
         </el-form-item>
@@ -21,12 +32,16 @@
 
 <script>
 
+import 'vue-json-viewer/style.css'
+
 export default {
     name: "JsonFormat",
     data() {
         return {
+            ratio1: 'Code',
+            jsonData: {},
             form: {
-                jsonStr: '',
+                jsonStr: ''
             }
         }
     },
@@ -34,7 +49,9 @@ export default {
         formatToJson() {
             try {
                 let postStr = this.form.jsonStr;
-                this.form.jsonStr = JSON.stringify(JSON.parse(this.form.jsonStr), null, '\t');
+                let jsonRes = JSON.parse(this.form.jsonStr);
+                this.jsonData = jsonRes;
+                this.form.jsonStr = JSON.stringify(jsonRes, null, '\t');
                 this.$notify({
                     title: 'success',
                     message: 'JSON格式化成功！',
@@ -58,6 +75,7 @@ export default {
         formatToString() {
             try {
                 this.form.jsonStr = JSON.stringify(JSON.parse(this.form.jsonStr), null, null);
+                this.jsonData = this.form.jsonStr;
                 this.$notify({
                     title: 'success',
                     message: 'JSON格式化成功！',
