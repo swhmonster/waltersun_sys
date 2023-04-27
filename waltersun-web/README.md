@@ -1,4 +1,4 @@
-# watersun-web
+# toolbox
 
 ## Project setup
 ```
