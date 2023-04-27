@@ -3,9 +3,9 @@
         <el-container>
             <el-header>
                 <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
-                    <el-menu-item index="1">时间戳工具</el-menu-item>
-                    <el-menu-item index="2">加解密工具</el-menu-item>
-                    <el-menu-item index="3">JSON格式化</el-menu-item>
+                    <el-menu-item index="1">JSON格式化</el-menu-item>
+                    <el-menu-item index="2">时间戳工具</el-menu-item>
+                    <el-menu-item index="3">加解密工具</el-menu-item>
                     <el-menu-item index="4">CDN工具</el-menu-item>
                     <el-menu-item index="5">UUID工具</el-menu-item>
                     <el-menu-item index="6">URL工具</el-menu-item>
@@ -19,9 +19,9 @@
                         <h3>{{ item }}</h3>
                     </el-carousel-item>
                 </el-carousel>
-                <DateTimeOperation v-show="activeIndex === '1'"></DateTimeOperation>
-                <CipherOperation v-show="activeIndex === '2'"></CipherOperation>
-                <JsonFormat v-show="activeIndex === '3'"></JsonFormat>
+                <JsonFormat v-show="activeIndex === '1'"></JsonFormat>
+                <DateTimeOperation v-show="activeIndex === '2'"></DateTimeOperation>
+                <CipherOperation v-show="activeIndex === '3'"></CipherOperation>
                 <CDNdetect v-show="activeIndex === '4'"></CDNdetect>
                 <UuidHelper v-show="activeIndex === '5'"></UuidHelper>
                 <URLUtils v-show="activeIndex === '6'"></URLUtils>
