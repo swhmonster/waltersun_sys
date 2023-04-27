@@ -29,7 +29,6 @@
                                          :expand-depth=5
                                          copyable
                                          expanded
-                                         sort
                                          show-array-index
                                          style="height: 100%"></json-viewer>
                             <div style="margin-bottom: 22px"></div>
