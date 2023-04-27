@@ -3,6 +3,7 @@
         <div class="tool-doc">
             <h3>JSON格式化</h3>
         </div>
+        <el-button type="text" @click="handleTabsEdit(null,'add')"> + New Tab </el-button>
         <el-tabs v-model="editableTabsValue" type="card" editable @edit="handleTabsEdit">
             <el-tab-pane
                     :key="item.name"
