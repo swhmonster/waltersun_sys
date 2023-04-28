@@ -3,7 +3,7 @@
         <div class="tool-doc">
             <h3>JSON格式化</h3>
         </div>
-        <el-button type="text" @click="handleTabsEdit(null,'add')"> + New Tab </el-button>
+        <el-button type="text" @click="handleTabsEdit(null,'add')"> + New Tab</el-button>
         <el-tabs v-model="editableTabsValue" type="card" editable @edit="handleTabsEdit">
             <el-tab-pane
                     :key="item.name"
@@ -77,8 +77,8 @@ export default {
     },
     methods: {
         formatToJson(item) {
+            let postStr = item.form.jsonStr;
             try {
-                let postStr = item.form.jsonStr;
                 let jsonRes = JSON.parse(item.form.jsonStr);
                 item.jsonData = jsonRes;
                 item.form.jsonStr = JSON.stringify(jsonRes, null, '\t');
@@ -91,22 +91,28 @@ export default {
                         jsonStr: ''
                     }
                 });
-                this.$axios.post('/api/utils/jsonFormat', postStr).then(res => {
-                    console.log(res);
-                }).catch(err => {
-                    console.log(err);
-                }).finally(() => {
-                })
             } catch (e) {
+                let msg = e.message;
+                let errPosition = parseInt(msg.substring(msg.lastIndexOf(' ') + 1, msg.length));
+                let errStr = postStr.substring(errPosition - 8, errPosition + 8 > postStr.length ? postStr.length : errPosition + 8);
                 this.$notify({
-                    title: '发生异常',
-                    message: 'JSON格式化异常，请检查！',
+                    title: 'JSON格式化异常',
+                    message: '错误发生位置：' + errStr,
                     type: 'warning'
                 });
+                item.jsonData = '错误发生位置：【' + errStr + '】 附近';
                 console.log(e);
             }
+
+            this.$axios.post('/api/utils/jsonFormat', postStr).then(res => {
+                console.log(res);
+            }).catch(err => {
+                console.log(err);
+            }).finally(() => {
+            })
         },
         formatToString(item) {
+            let postStr = ''
             try {
                 item.form.jsonStr = JSON.stringify(JSON.parse(item.form.jsonStr), null, null);
                 item.jsonData = item.form.jsonStr;
@@ -115,21 +121,27 @@ export default {
                     message: 'JSON格式化成功！',
                     type: 'success'
                 });
-                let postStr = item.form.jsonStr;
-                this.$axios.post('/api/utils/jsonFormat', postStr).then(res => {
-                    console.log(res);
-                }).catch(err => {
-                    console.log(err);
-                }).finally(() => {
-                })
             } catch (e) {
+                let msg = e.message;
+                postStr = item.form.jsonStr;
+                let errPosition = parseInt(msg.substring(msg.lastIndexOf(' ') + 1, msg.length));
+                let errStr = postStr.substring(errPosition - 8, errPosition + 8 > postStr.length ? postStr.length : errPosition + 8);
                 this.$notify({
-                    title: '发生异常',
-                    message: 'JSON格式化异常，请检查！',
+                    title: 'JSON格式化异常',
+                    message: '错误发生位置：' + errStr,
                     type: 'warning'
                 });
+                item.jsonData = '错误发生位置：【' + errStr + '】 附近';
                 console.log(e);
             }
+
+            postStr = item.form.jsonStr;
+            this.$axios.post('/api/utils/jsonFormat', postStr).then(res => {
+                console.log(res);
+            }).catch(err => {
+                console.log(err);
+            }).finally(() => {
+            })
         },
         handleTabsEdit(targetName, action) {
             if (action === 'add') {
