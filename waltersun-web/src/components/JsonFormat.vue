@@ -12,12 +12,16 @@
                     :name="item.name"
             >
                 <el-form ref="form" :model="item.form" label-width="0">
+                    <el-form-item class="demo-form-inline" :inline="true" style="text-align: center;margin-bottom: 0">
+                        <el-button type="primary" @click="formatToJson(item)">转JSON</el-button>
+                        <el-button type="primary" @click="formatToString(item)">转String</el-button>
+                    </el-form-item>
                     <el-container>
                         <el-main style="width: 50%">
                             <el-form-item class="demo-form-inline" :inline="true">
                                 <el-input
                                         type="textarea"
-                                        :autosize="{ minRows: 15, maxRows: 1000}"
+                                        :autosize="{ minRows: 15, maxRows: 25}"
                                         placeholder="请输入JSON字符串！"
                                         v-model="item.form.jsonStr"
                                         maxlength="65535">
@@ -26,18 +30,14 @@
                         </el-main>
                         <el-main style="width: 50%; overflow: hidden">
                             <json-viewer :value="item.jsonData"
-                                         :expand-depth=5
+                                         :expand-depth=3
                                          copyable
-                                         expanded
                                          show-array-index
-                                         style="height: 100%"></json-viewer>
+                                         style="height: 100%"
+                            ></json-viewer>
                             <div style="margin-bottom: 22px"></div>
                         </el-main>
                     </el-container>
-                    <el-form-item class="demo-form-inline" :inline="true" style="text-align: center;">
-                        <el-button type="primary" @click="formatToJson(item)">转JSON</el-button>
-                        <el-button type="primary" @click="formatToString(item)">转String</el-button>
-                    </el-form-item>
                 </el-form>
             </el-tab-pane>
         </el-tabs>
