@@ -14,6 +14,7 @@
     "element-ui": "^2.15.13",
     "uuid": "^9.0.0",
     "vue": "^2.6.11",
+    "vue-clipboard2": "^0.3.3",
     "vue-json-viewer": "^2.2.22"
   },
   "devDependencies": {

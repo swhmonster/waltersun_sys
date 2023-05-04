@@ -7,12 +7,30 @@
                  label-position="right">
             <el-form-item label="时间">
                 <el-input v-model="form.dt" style="width: 170px" readonly></el-input>
+                <el-button icon="el-icon-document-copy" circle
+                           v-clipboard:copy="form.dt"
+                           v-clipboard:success="copyRes"
+                           style="margin-left: 10px"
+                           size="mini"
+                ></el-button>
             </el-form-item>
             <el-form-item label="时间戳(s)">
                 <el-input v-model="form.ts" style="width: 170px" readonly></el-input>
+                <el-button icon="el-icon-document-copy" circle
+                           v-clipboard:copy="form.ts"
+                           v-clipboard:success="copyRes"
+                           style="margin-left: 10px"
+                           size="mini"
+                ></el-button>
             </el-form-item>
             <el-form-item label="时间戳(ms)">
                 <el-input v-model="form.tms" style="width: 170px" readonly></el-input>
+                <el-button icon="el-icon-document-copy" circle
+                           v-clipboard:copy="form.tms"
+                           v-clipboard:success="copyRes"
+                           style="margin-left: 10px"
+                           size="mini"
+                ></el-button>
             </el-form-item>
         </el-form>
         <el-form ref="form1" :model="form1" :rules="rules1" label-width="80px" class="demo-form-inline" :inline="true"
@@ -38,6 +56,12 @@
             </el-form-item>
             <el-form-item>
                 <el-input v-model="form1.datetime" placeholder="转换结果" clearable style="width: 230px" maxlength="100"></el-input>
+                <el-button icon="el-icon-document-copy" circle
+                           v-clipboard:copy="form1.datetime"
+                           v-clipboard:success="copyRes"
+                           style="margin-left: 10px"
+                           size="mini"
+                ></el-button>
             </el-form-item>
         </el-form>
         <el-form ref="form2" :model="form2" :rules="rules2" label-width="80px" class="demo-form-inline" :inline="true"
@@ -63,6 +87,12 @@
             </el-form-item>
             <el-form-item>
                 <el-input v-model="form2.timestamp" placeholder="转换结果" clearable style="width: 230px" maxlength="100"></el-input>
+                <el-button icon="el-icon-document-copy" circle
+                           v-clipboard:copy="form2.timestamp+''"
+                           v-clipboard:success="copyRes"
+                           style="margin-left: 10px"
+                           size="mini"
+                ></el-button>
             </el-form-item>
         </el-form>
         <el-form ref="form3" :model="form3" :rules="rules3" label-width="70px" class="demo-form-inline" :inline="true"
@@ -84,6 +114,12 @@
             </el-form-item>
             <el-form-item>
                 <el-input v-model="form3.result" placeholder="格式化结果" style="width: 250px" clearable maxlength="100"></el-input>
+                <el-button icon="el-icon-document-copy" circle
+                           v-clipboard:copy="form3.result"
+                           v-clipboard:success="copyRes"
+                           style="margin-left: 10px"
+                           size="mini"
+                ></el-button>
             </el-form-item>
         </el-form>
         <div class="tool-doc" style="text-align:justify">
@@ -390,6 +426,13 @@ export default {
                 }).finally(() => {
                 })
             }
+        },
+        copyRes() {
+            this.$notify({
+                title: '复制完成',
+                message: '',
+                type: 'success'
+            });
         }
     }
 }

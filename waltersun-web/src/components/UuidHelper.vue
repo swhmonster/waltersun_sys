@@ -6,15 +6,39 @@
         </div>
         <el-form-item>
             <el-input v-model="form.uuid1" style="width: 350px;" readonly></el-input>
+            <el-button icon="el-icon-document-copy" circle
+                       v-clipboard:copy="form.uuid1"
+                       v-clipboard:success="copyRes"
+                       style="margin-left: 10px"
+                       size="mini"
+            ></el-button>
         </el-form-item>
         <el-form-item>
             <el-input v-model="form.uuid2" style="width: 350px;" readonly></el-input>
+            <el-button icon="el-icon-document-copy" circle
+                       v-clipboard:copy="form.uuid2"
+                       v-clipboard:success="copyRes"
+                       style="margin-left: 10px"
+                       size="mini"
+            ></el-button>
         </el-form-item>
         <el-form-item>
             <el-input v-model="form.uuid3" style="width: 350px;" readonly></el-input>
+            <el-button icon="el-icon-document-copy" circle
+                       v-clipboard:copy="form.uuid3"
+                       v-clipboard:success="copyRes"
+                       style="margin-left: 10px"
+                       size="mini"
+            ></el-button>
         </el-form-item>
         <el-form-item>
             <el-input v-model="form.uuid4" style="width: 350px;" readonly></el-input>
+            <el-button icon="el-icon-document-copy" circle
+                       v-clipboard:copy="form.uuid4"
+                       v-clipboard:success="copyRes"
+                       style="margin-left: 10px"
+                       size="mini"
+            ></el-button>
         </el-form-item>
         <el-form-item>
             <el-button type="primary" @click="generate">生成</el-button>
@@ -46,6 +70,13 @@ export default {
             this.$notify({
                 title: 'success',
                 message: '请选择需要的uuid',
+                type: 'success'
+            });
+        },
+        copyRes() {
+            this.$notify({
+                title: '复制完成',
+                message: '',
                 type: 'success'
             });
         }
