@@ -3,7 +3,7 @@
         <div class="tool-doc">
             <h3>当前时间 和 时间戳</h3>
         </div>
-        <el-form ref="form" :model="form" label-width="80px" class="demo-form-inline" :inline="true"
+        <el-form ref="form" :model="form" label-width="85px" class="demo-form-inline" :inline="true"
                  label-position="right">
             <el-form-item label="时间">
                 <el-input v-model="form.dt" style="width: 170px" readonly></el-input>
