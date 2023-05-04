@@ -1,9 +1,9 @@
 <template>
     <el-table :data="linkList" v-loading="loading">
         <el-table-column prop="fileName" label="下载列表"/>
-        <el-table-column prop="fileName" label="" width="110">
+        <el-table-column prop="fileName" label="" width="130">
             <template v-slot:default="scope">
-                <el-button type="primary" size="mini" @click="download(scope.row.fileAddress, scope.row.fileName)">
+                <el-button type="primary" icon="el-icon-download" size="mini" @click="download(scope.row.fileAddress, scope.row.fileName)">
                     download
                 </el-button>
             </template>
