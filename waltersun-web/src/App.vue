@@ -15,7 +15,7 @@
                             <el-menu-item index="7">其他工具下载</el-menu-item>
                         </el-menu>
                     </el-main>
-                    <el-main style="width:20px">
+                    <el-main style="width:20px" v-if="false">
                         <el-avatar size="medium" :src="circleUrl"  style="float:right" @click.native="login"></el-avatar>
                     </el-main>
                 </el-container>
