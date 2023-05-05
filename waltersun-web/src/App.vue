@@ -2,15 +2,23 @@
     <div id="app">
         <el-container>
             <el-header>
-                <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
-                    <el-menu-item index="1">JSON格式化</el-menu-item>
-                    <el-menu-item index="2">时间戳工具</el-menu-item>
-                    <el-menu-item index="3">加解密工具</el-menu-item>
-                    <el-menu-item index="4">CDN工具</el-menu-item>
-                    <el-menu-item index="5">UUID工具</el-menu-item>
-                    <el-menu-item index="6">URL工具</el-menu-item>
-                    <el-menu-item index="7">其他工具下载</el-menu-item>
-                </el-menu>
+                <el-container>
+                    <el-main style="padding-top: 0;width: 93%">
+                        <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal"
+                                 @select="handleSelect">
+                            <el-menu-item index="1">JSON格式化</el-menu-item>
+                            <el-menu-item index="2">时间戳工具</el-menu-item>
+                            <el-menu-item index="3">加解密工具</el-menu-item>
+                            <el-menu-item index="4">CDN工具</el-menu-item>
+                            <el-menu-item index="5">UUID工具</el-menu-item>
+                            <el-menu-item index="6">URL工具</el-menu-item>
+                            <el-menu-item index="7">其他工具下载</el-menu-item>
+                        </el-menu>
+                    </el-main>
+                    <el-main style="width:20px">
+                        <el-avatar size="medium" :src="circleUrl"  style="float:right" @click.native="login"></el-avatar>
+                    </el-main>
+                </el-container>
             </el-header>
             <el-main style="">
                 <el-carousel indicator-position="outside" :interval="8000" height="90px" style="color: #2c3e50">
@@ -72,7 +80,8 @@ export default {
                 '善良的人都晚熟，并且是被劣人催熟的，后来虽然开窍了，但他仍然善良与赤诚，不断寻找同类，最后变成最孤独的一个人。 ——莫言',
                 '那时我们有梦，关于文学，关于爱情，关于穿越世界的旅行。如今我们深夜饮酒，杯子碰到一起，都是梦破碎的声音。—— 北岛',
                 '我觉得人的脆弱和坚强都超乎自己的想象。有时，我可能脆弱得一句话就泪流满面；有时，也发现自己咬着牙走了很长的路。——莫泊桑'
-            ]
+            ],
+            circleUrl:'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png'
         }
     },
     mounted() {
@@ -89,6 +98,15 @@ export default {
     methods: {
         handleSelect(key) {
             this.activeIndex = key;
+        },
+        login(){
+            /*this.$axios.get('/api/login', {}).then(res => {
+                console.log(res);
+            }).catch(err => {
+                console.log(err);
+            }).finally(() => {
+            })*/
+            window.open('/api/login')
         }
     }
 }

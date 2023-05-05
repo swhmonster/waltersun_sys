@@ -21,7 +21,7 @@ export default {
         }
     },
     mounted() {
-        this.$axios.get('/api/file/fileList', {params: {id: 'xxx'}}).then(res => {
+        this.$axios.get('/api/file/fileList', {}).then(res => {
             this.linkList = res.data.data
             this.loading = false;
         }).catch(err => {
