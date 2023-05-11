@@ -66,12 +66,20 @@
                          @mouseout="csdnChangeOut()"
                          @click="openCsdn()"
                          alt>
-                    <img src="./assets/wechat.png" alt="wechat-icon"
+                    <img src="./assets/wechat.png"
                          :height="wechatIconHeight"
-                         :style="{cursor:flag?'hand':'pointer'}"
                          style="margin-right: 5px;"
                          @mouseover="wechatChangeIn()"
-                         @mouseout="wechatChangeOut()">
+                         @mouseout="wechatChangeOut()"
+                         alt>
+                    <img src="./assets/waltersun_cn.png"
+                         :height="waltersunIconHeight"
+                         :style="{cursor:flag?'hand':'pointer'}"
+                         style="margin-right: 5px;box-shadow: 0 2px 4px rgba(0, 0, 0, .12)"
+                         @mouseover="waltersunChangeIn()"
+                         @mouseout="waltersunChangeOut()"
+                         @click="openWaltersun()"
+                         alt>
                 </div>
             </el-footer>
         </el-container>
@@ -106,6 +114,7 @@ export default {
             wechatIconHeight: 35,
             githubIconHeight: 35,
             csdnIconHeight: 35,
+            waltersunIconHeight: 35,
             activeIndex: '1',
             arr: [
                 '善良的人都晚熟，并且是被劣人催熟的，后来虽然开窍了，但他仍然善良与赤诚，不断寻找同类，最后变成最孤独的一个人。 ——莫言',
@@ -166,11 +175,23 @@ export default {
             this.sizeFlag = false;
             this.csdnIconHeight = 35;
         },
+        waltersunChangeIn() {
+            this.sizeFlag = true;
+            this.waltersunIconHeight = 45;
+        },
+        waltersunChangeOut() {
+            this.flag = false;
+            this.sizeFlag = false;
+            this.waltersunIconHeight = 35;
+        },
         openGithub() {
             window.open("https://github.com/swhmonster", "_blank")
         },
         openCsdn() {
             window.open("https://blog.csdn.net/Soul_Programmer_Swh", "_blank")
+        },
+        openWaltersun() {
+            window.open("https://www.waltersun.cn/", "_blank")
         }
     }
 }
