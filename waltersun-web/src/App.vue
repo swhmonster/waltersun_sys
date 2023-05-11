@@ -48,8 +48,8 @@
                         <img src="http://rescdn.qqmail.com/zh_CN/htmledition/images/function/qm_open/ico_mailme_02.png" alt="email me"/>
                     </a>-->
                 <img alt="wechat-scan" src="./assets/codescan8cm.jpeg" v-show="flag"
-                     style="float: right;height: 150px; width:150px; position:absolute;box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04); right: 30px;bottom: 100px">
-                <img src="./assets/wechat.png" alt="wechat-icon" style="float: right;margin-right: 30px;height: 35px;"
+                     style="float: right;height: 150px; width:150px; position:fixed;box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04); right: 30px;bottom: 80px">
+                <img src="./assets/wechat.png" alt="wechat-icon" style="float: right;margin-right: 30px;height: 35px;position:fixed;right: 30px;bottom: 30px;"
                      @mouseover="changeIn" @mouseout="changeOut">
             </el-footer>
         </el-container>
