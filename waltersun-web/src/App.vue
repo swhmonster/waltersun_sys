@@ -16,7 +16,7 @@
                         </el-menu>
                     </el-main>
                     <el-main style="width:20px" v-if="false">
-                        <el-avatar size="medium" :src="circleUrl"  style="float:right" @click.native="login"></el-avatar>
+                        <el-avatar size="medium" :src="circleUrl" style="float:right" @click.native="login"></el-avatar>
                     </el-main>
                 </el-container>
             </el-header>
@@ -47,6 +47,10 @@
                        style="text-decoration:none;">
                         <img src="http://rescdn.qqmail.com/zh_CN/htmledition/images/function/qm_open/ico_mailme_02.png" alt="email me"/>
                     </a>-->
+                <img alt="wechat-scan" src="./assets/codescan8cm.jpeg" v-show="flag"
+                     style="float: right;height: 150px; width:150px; position:absolute;box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04); right: 30px;bottom: 100px">
+                <img src="./assets/wechat.png" alt="wechat-icon" style="float: right;margin-right: 30px;height: 35px;"
+                     @mouseover="changeIn" @mouseout="changeOut">
             </el-footer>
         </el-container>
     </div>
@@ -75,13 +79,14 @@ export default {
     },
     data() {
         return {
+            flag: false,
             activeIndex: '1',
             arr: [
                 '善良的人都晚熟，并且是被劣人催熟的，后来虽然开窍了，但他仍然善良与赤诚，不断寻找同类，最后变成最孤独的一个人。 ——莫言',
                 '那时我们有梦，关于文学，关于爱情，关于穿越世界的旅行。如今我们深夜饮酒，杯子碰到一起，都是梦破碎的声音。—— 北岛',
                 '我觉得人的脆弱和坚强都超乎自己的想象。有时，我可能脆弱得一句话就泪流满面；有时，也发现自己咬着牙走了很长的路。——莫泊桑'
             ],
-            circleUrl:'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png'
+            circleUrl: 'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png'
         }
     },
     mounted() {
@@ -99,7 +104,7 @@ export default {
         handleSelect(key) {
             this.activeIndex = key;
         },
-        login(){
+        login() {
             /*this.$axios.get('/api/login', {}).then(res => {
                 console.log(res);
             }).catch(err => {
@@ -107,7 +112,13 @@ export default {
             }).finally(() => {
             })*/
             window.open('/api/login')
-        }
+        },
+        changeIn() {
+            this.flag = true;
+        },
+        changeOut() {
+            this.flag = false;
+        },
     }
 }
 </script>
