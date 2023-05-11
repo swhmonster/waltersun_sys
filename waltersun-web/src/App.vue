@@ -49,8 +49,30 @@
                     </a>-->
                 <img alt="wechat-scan" src="./assets/codescan8cm.jpeg" v-show="flag"
                      style="float: right;height: 150px; width:150px; position:fixed;box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04); right: 30px;bottom: 80px">
-                <img src="./assets/wechat.png" alt="wechat-icon" style="float: right;margin-right: 30px;height: 35px;position:fixed;right: 30px;bottom: 30px;"
-                     @mouseover="changeIn" @mouseout="changeOut">
+                <div style="margin-right: 30px;height: 35px;position:fixed;right: 30px;bottom: 30px;">
+                    <img src="./assets/github.png"
+                         :height="githubIconHeight"
+                         :style="{cursor:flag?'hand':'pointer'}"
+                         style="margin-right: 5px;"
+                         @mouseover="githubChangeIn()"
+                         @mouseout="githubChangeOut()"
+                         @click="openGithub()"
+                         alt>
+                    <img src="./assets/csdn.png"
+                         :height="csdnIconHeight"
+                         :style="{cursor:flag?'hand':'pointer'}"
+                         style="margin-right: 5px;"
+                         @mouseover="csdnChangeIn()"
+                         @mouseout="csdnChangeOut()"
+                         @click="openCsdn()"
+                         alt>
+                    <img src="./assets/wechat.png" alt="wechat-icon"
+                         :height="wechatIconHeight"
+                         :style="{cursor:flag?'hand':'pointer'}"
+                         style="margin-right: 5px;"
+                         @mouseover="wechatChangeIn()"
+                         @mouseout="wechatChangeOut()">
+                </div>
             </el-footer>
         </el-container>
     </div>
@@ -80,6 +102,10 @@ export default {
     data() {
         return {
             flag: false,
+            sizeFlag: false,
+            wechatIconHeight: 35,
+            githubIconHeight: 35,
+            csdnIconHeight: 35,
             activeIndex: '1',
             arr: [
                 '善良的人都晚熟，并且是被劣人催熟的，后来虽然开窍了，但他仍然善良与赤诚，不断寻找同类，最后变成最孤独的一个人。 ——莫言',
@@ -113,12 +139,39 @@ export default {
             })*/
             window.open('/api/login')
         },
-        changeIn() {
+        wechatChangeIn() {
             this.flag = true;
+            this.sizeFlag = true;
+            this.wechatIconHeight = 45;
         },
-        changeOut() {
+        wechatChangeOut() {
             this.flag = false;
+            this.sizeFlag = false;
+            this.wechatIconHeight = 35;
         },
+        githubChangeIn() {
+            this.sizeFlag = true;
+            this.githubIconHeight = 45;
+        },
+        githubChangeOut() {
+            this.sizeFlag = false;
+            this.githubIconHeight = 35;
+        },
+        csdnChangeIn() {
+            this.sizeFlag = true;
+            this.csdnIconHeight = 45;
+        },
+        csdnChangeOut() {
+            this.flag = false;
+            this.sizeFlag = false;
+            this.csdnIconHeight = 35;
+        },
+        openGithub() {
+            window.open("https://github.com/swhmonster", "_blank")
+        },
+        openCsdn() {
+            window.open("https://blog.csdn.net/Soul_Programmer_Swh", "_blank")
+        }
     }
 }
 </script>
@@ -148,3 +201,5 @@ export default {
     background-color: #606266;
 }*/
 </style>
+<script setup>
+</script>
