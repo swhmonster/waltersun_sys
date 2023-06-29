@@ -6,8 +6,8 @@
                     <el-main style="padding-top: 0;width: 93%">
                         <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal"
                                  @select="handleSelect">
-                            <el-menu-item index="1">JSON格式化</el-menu-item>
-                            <el-menu-item index="2">时间戳工具</el-menu-item>
+                          <el-menu-item index="1">时间戳工具</el-menu-item>
+                          <el-menu-item index="2">JSON格式化</el-menu-item>
                             <el-menu-item index="3">加解密工具</el-menu-item>
                             <el-menu-item index="4">CDN工具</el-menu-item>
                             <el-menu-item index="5">UUID工具</el-menu-item>
@@ -21,14 +21,14 @@
                 </el-container>
             </el-header>
             <el-main style="">
-                <el-carousel indicator-position="outside" :interval="8000" height="90px" style="color: #2c3e50">
+<!--                <el-carousel indicator-position="outside" :interval="8000" height="90px" style="color: #2c3e50">
                     <el-carousel-item v-for="item in arr" :key="item"
                                       style="color: #2c3e50; font-size: 18px; font-family: 'Helvetica Neue',cursive;text-align: center;background-color: azure;box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04)">
                         <h3>{{ item }}</h3>
                     </el-carousel-item>
-                </el-carousel>
-                <JsonFormat v-show="activeIndex === '1'"></JsonFormat>
-                <DateTimeOperation v-show="activeIndex === '2'"></DateTimeOperation>
+                </el-carousel>-->
+              <DateTimeOperation v-show="activeIndex === '1'"></DateTimeOperation>
+              <JsonFormat v-show="activeIndex === '2'"></JsonFormat>
                 <CipherOperation v-show="activeIndex === '3'"></CipherOperation>
                 <CDNdetect v-show="activeIndex === '4'"></CDNdetect>
                 <UuidHelper v-show="activeIndex === '5'"></UuidHelper>
